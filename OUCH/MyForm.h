@@ -34,7 +34,15 @@ namespace OUCH {
 				delete components;
 			}
 		}
-	private: System::Windows::Forms::Label^ label1;
+	private: System::Windows::Forms::Label^ locationLabel;
+	private: System::Windows::Forms::MaskedTextBox^ locationBox;
+	protected:
+
+
+	private: System::Windows::Forms::Button^ browseBtn;
+	private: System::Windows::Forms::Label^ exportLabel;
+	private: System::Windows::Forms::MaskedTextBox^ exportBox;
+	private: System::Windows::Forms::GroupBox^ groupBox1;
 	protected:
 
 	private:
@@ -50,25 +58,78 @@ namespace OUCH {
 		/// </summary>
 		void InitializeComponent(void)
 		{
-			this->label1 = (gcnew System::Windows::Forms::Label());
+			this->locationLabel = (gcnew System::Windows::Forms::Label());
+			this->locationBox = (gcnew System::Windows::Forms::MaskedTextBox());
+			this->browseBtn = (gcnew System::Windows::Forms::Button());
+			this->exportLabel = (gcnew System::Windows::Forms::Label());
+			this->exportBox = (gcnew System::Windows::Forms::MaskedTextBox());
+			this->groupBox1 = (gcnew System::Windows::Forms::GroupBox());
 			this->SuspendLayout();
 			// 
-			// label1
+			// locationLabel
 			// 
-			this->label1->AutoSize = true;
-			this->label1->Location = System::Drawing::Point(58, 51);
-			this->label1->Name = L"label1";
-			this->label1->Size = System::Drawing::Size(86, 25);
-			this->label1->TabIndex = 0;
-			this->label1->Text = L"Location";
-			this->label1->Click += gcnew System::EventHandler(this, &MyForm::Label1_Click);
+			this->locationLabel->AutoSize = true;
+			this->locationLabel->Location = System::Drawing::Point(63, 53);
+			this->locationLabel->Name = L"locationLabel";
+			this->locationLabel->Size = System::Drawing::Size(100, 25);
+			this->locationLabel->TabIndex = 0;
+			this->locationLabel->Text = L"Location:";
+			this->locationLabel->Click += gcnew System::EventHandler(this, &MyForm::Label1_Click);
+			// 
+			// locationBox
+			// 
+			this->locationBox->Location = System::Drawing::Point(169, 50);
+			this->locationBox->Name = L"locationBox";
+			this->locationBox->Size = System::Drawing::Size(459, 31);
+			this->locationBox->TabIndex = 1;
+			this->locationBox->Text = L"C:\\";
+			// 
+			// browseBtn
+			// 
+			this->browseBtn->Location = System::Drawing::Point(651, 47);
+			this->browseBtn->Name = L"browseBtn";
+			this->browseBtn->Size = System::Drawing::Size(109, 36);
+			this->browseBtn->TabIndex = 2;
+			this->browseBtn->Text = L"Browse";
+			this->browseBtn->UseVisualStyleBackColor = true;
+			// 
+			// exportLabel
+			// 
+			this->exportLabel->AutoSize = true;
+			this->exportLabel->Location = System::Drawing::Point(68, 116);
+			this->exportLabel->Name = L"exportLabel";
+			this->exportLabel->Size = System::Drawing::Size(80, 25);
+			this->exportLabel->TabIndex = 3;
+			this->exportLabel->Text = L"Export:";
+			// 
+			// exportBox
+			// 
+			this->exportBox->Location = System::Drawing::Point(169, 113);
+			this->exportBox->Name = L"exportBox";
+			this->exportBox->Size = System::Drawing::Size(459, 31);
+			this->exportBox->TabIndex = 4;
+			this->exportBox->Text = L"C:\\";
+			// 
+			// groupBox1
+			// 
+			this->groupBox1->Location = System::Drawing::Point(73, 222);
+			this->groupBox1->Name = L"groupBox1";
+			this->groupBox1->Size = System::Drawing::Size(687, 317);
+			this->groupBox1->TabIndex = 5;
+			this->groupBox1->TabStop = false;
+			this->groupBox1->Text = L"groupBox1";
 			// 
 			// MyForm
 			// 
-			this->AutoScaleDimensions = System::Drawing::SizeF(11, 24);
+			this->AutoScaleDimensions = System::Drawing::SizeF(12, 25);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(1227, 1030);
-			this->Controls->Add(this->label1);
+			this->ClientSize = System::Drawing::Size(837, 701);
+			this->Controls->Add(this->groupBox1);
+			this->Controls->Add(this->exportBox);
+			this->Controls->Add(this->exportLabel);
+			this->Controls->Add(this->browseBtn);
+			this->Controls->Add(this->locationBox);
+			this->Controls->Add(this->locationLabel);
 			this->Name = L"MyForm";
 			this->Text = L"MyForm";
 			this->ResumeLayout(false);
