@@ -102,6 +102,36 @@ namespace OUCH {
 
 
 	protected:
+		//flags for current windload radio buttons
+		bool lightRad = false;
+		bool heavyRad = false;
+		bool instRad = false;
+		bool replRad = false;
+		bool agradeRad = false;
+		bool bgradeRad = false;
+		bool eightRad = false;
+		bool twelveRad= false;
+		bool sixteenRad = false;
+		bool eighteenRad = false;
+		bool twntyfrRad = false;
+
+		//flags for desired windload radio buttons
+		bool lightRad2 = false;
+		bool heavyRad2 = false;
+		bool instRad2 = false;
+		bool replRad2 = false;
+		bool agradeRad2 = false;
+		bool bgradeRad2 = false;
+		bool eightRad2 = false;
+		bool twelveRad2 = false;
+		bool sixteenRad2 = false;
+		bool eighteenRad2 = false;
+		bool twntyfrRad2 = false;
+		
+
+
+
+		
 
 	private:
 		/// <summary>
@@ -120,24 +150,6 @@ namespace OUCH {
 			this->locationTxtbox = (gcnew System::Windows::Forms::MaskedTextBox());
 			this->browseBtn = (gcnew System::Windows::Forms::Button());
 			this->windloadInfoBox = (gcnew System::Windows::Forms::GroupBox());
-			this->currentBox = (gcnew System::Windows::Forms::GroupBox());
-			this->typeBox = (gcnew System::Windows::Forms::GroupBox());
-			this->windBox = (gcnew System::Windows::Forms::GroupBox());
-			this->lightRadio = (gcnew System::Windows::Forms::RadioButton());
-			this->heavyRadio = (gcnew System::Windows::Forms::RadioButton());
-			this->owchLabel = (gcnew System::Windows::Forms::Label());
-			this->folderBrowserDialog1 = (gcnew System::Windows::Forms::FolderBrowserDialog());
-			this->gradeBox = (gcnew System::Windows::Forms::GroupBox());
-			this->loadBox = (gcnew System::Windows::Forms::GroupBox());
-			this->instRadio = (gcnew System::Windows::Forms::RadioButton());
-			this->replRadio = (gcnew System::Windows::Forms::RadioButton());
-			this->aRadio = (gcnew System::Windows::Forms::RadioButton());
-			this->bRadio = (gcnew System::Windows::Forms::RadioButton());
-			this->eightRadio = (gcnew System::Windows::Forms::RadioButton());
-			this->twelveRadio = (gcnew System::Windows::Forms::RadioButton());
-			this->sixteenRadio = (gcnew System::Windows::Forms::RadioButton());
-			this->twntyfrRadio = (gcnew System::Windows::Forms::RadioButton());
-			this->eighteenRadio = (gcnew System::Windows::Forms::RadioButton());
 			this->desiredBox = (gcnew System::Windows::Forms::GroupBox());
 			this->loadBox2 = (gcnew System::Windows::Forms::GroupBox());
 			this->eighteenRadio2 = (gcnew System::Windows::Forms::RadioButton());
@@ -154,18 +166,36 @@ namespace OUCH {
 			this->windBox2 = (gcnew System::Windows::Forms::GroupBox());
 			this->lightRadio2 = (gcnew System::Windows::Forms::RadioButton());
 			this->heavyRadio2 = (gcnew System::Windows::Forms::RadioButton());
+			this->currentBox = (gcnew System::Windows::Forms::GroupBox());
+			this->loadBox = (gcnew System::Windows::Forms::GroupBox());
+			this->eighteenRadio = (gcnew System::Windows::Forms::RadioButton());
+			this->twntyfrRadio = (gcnew System::Windows::Forms::RadioButton());
+			this->sixteenRadio = (gcnew System::Windows::Forms::RadioButton());
+			this->twelveRadio = (gcnew System::Windows::Forms::RadioButton());
+			this->eightRadio = (gcnew System::Windows::Forms::RadioButton());
+			this->gradeBox = (gcnew System::Windows::Forms::GroupBox());
+			this->bRadio = (gcnew System::Windows::Forms::RadioButton());
+			this->aRadio = (gcnew System::Windows::Forms::RadioButton());
+			this->typeBox = (gcnew System::Windows::Forms::GroupBox());
+			this->replRadio = (gcnew System::Windows::Forms::RadioButton());
+			this->instRadio = (gcnew System::Windows::Forms::RadioButton());
+			this->windBox = (gcnew System::Windows::Forms::GroupBox());
+			this->lightRadio = (gcnew System::Windows::Forms::RadioButton());
+			this->heavyRadio = (gcnew System::Windows::Forms::RadioButton());
+			this->owchLabel = (gcnew System::Windows::Forms::Label());
+			this->folderBrowserDialog1 = (gcnew System::Windows::Forms::FolderBrowserDialog());
 			this->button1 = (gcnew System::Windows::Forms::Button());
 			this->windloadInfoBox->SuspendLayout();
-			this->currentBox->SuspendLayout();
-			this->typeBox->SuspendLayout();
-			this->windBox->SuspendLayout();
-			this->gradeBox->SuspendLayout();
-			this->loadBox->SuspendLayout();
 			this->desiredBox->SuspendLayout();
 			this->loadBox2->SuspendLayout();
 			this->gradeBox2->SuspendLayout();
 			this->typeBox2->SuspendLayout();
 			this->windBox2->SuspendLayout();
+			this->currentBox->SuspendLayout();
+			this->loadBox->SuspendLayout();
+			this->gradeBox->SuspendLayout();
+			this->typeBox->SuspendLayout();
+			this->windBox->SuspendLayout();
 			this->SuspendLayout();
 			// 
 			// locationLabel
@@ -174,8 +204,8 @@ namespace OUCH {
 			this->locationLabel->Dock = System::Windows::Forms::DockStyle::Left;
 			this->locationLabel->Location = System::Drawing::Point(0, 0);
 			this->locationLabel->Name = L"locationLabel";
-			this->locationLabel->Padding = System::Windows::Forms::Padding(0, 100, 0, 0);
-			this->locationLabel->Size = System::Drawing::Size(92, 125);
+			this->locationLabel->Padding = System::Windows::Forms::Padding(0, 104, 0, 0);
+			this->locationLabel->Size = System::Drawing::Size(100, 129);
 			this->locationLabel->TabIndex = 0;
 			this->locationLabel->Text = L"Location:";
 			this->locationLabel->Click += gcnew System::EventHandler(this, &MyForm::Label1_Click);
@@ -184,17 +214,17 @@ namespace OUCH {
 			// 
 			this->locationTxtbox->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Bottom | System::Windows::Forms::AnchorStyles::Left)
 				| System::Windows::Forms::AnchorStyles::Right));
-			this->locationTxtbox->Location = System::Drawing::Point(193, 110);
+			this->locationTxtbox->Location = System::Drawing::Point(211, 115);
 			this->locationTxtbox->Name = L"locationTxtbox";
-			this->locationTxtbox->Size = System::Drawing::Size(421, 29);
+			this->locationTxtbox->Size = System::Drawing::Size(459, 31);
 			this->locationTxtbox->TabIndex = 1;
 			this->locationTxtbox->Text = L"C:\\";
 			// 
 			// browseBtn
 			// 
-			this->browseBtn->Location = System::Drawing::Point(1138, 104);
+			this->browseBtn->Location = System::Drawing::Point(1241, 108);
 			this->browseBtn->Name = L"browseBtn";
-			this->browseBtn->Size = System::Drawing::Size(100, 35);
+			this->browseBtn->Size = System::Drawing::Size(109, 36);
 			this->browseBtn->TabIndex = 2;
 			this->browseBtn->Text = L"Browse";
 			this->browseBtn->UseVisualStyleBackColor = true;
@@ -204,213 +234,13 @@ namespace OUCH {
 			// 
 			this->windloadInfoBox->Controls->Add(this->desiredBox);
 			this->windloadInfoBox->Controls->Add(this->currentBox);
-			this->windloadInfoBox->Location = System::Drawing::Point(100, 182);
+			this->windloadInfoBox->Location = System::Drawing::Point(109, 190);
 			this->windloadInfoBox->Name = L"windloadInfoBox";
-			this->windloadInfoBox->Size = System::Drawing::Size(1124, 543);
+			this->windloadInfoBox->Size = System::Drawing::Size(1226, 566);
 			this->windloadInfoBox->TabIndex = 5;
 			this->windloadInfoBox->TabStop = false;
 			this->windloadInfoBox->Text = L"WindLoad Information";
 			this->windloadInfoBox->Enter += gcnew System::EventHandler(this, &MyForm::GroupBox1_Enter);
-			// 
-			// currentBox
-			// 
-			this->currentBox->Controls->Add(this->loadBox);
-			this->currentBox->Controls->Add(this->gradeBox);
-			this->currentBox->Controls->Add(this->typeBox);
-			this->currentBox->Controls->Add(this->windBox);
-			this->currentBox->Location = System::Drawing::Point(6, 39);
-			this->currentBox->Name = L"currentBox";
-			this->currentBox->Size = System::Drawing::Size(1112, 229);
-			this->currentBox->TabIndex = 4;
-			this->currentBox->TabStop = false;
-			this->currentBox->Text = L"Current Windload";
-			// 
-			// typeBox
-			// 
-			this->typeBox->Controls->Add(this->replRadio);
-			this->typeBox->Controls->Add(this->instRadio);
-			this->typeBox->Location = System::Drawing::Point(310, 41);
-			this->typeBox->Name = L"typeBox";
-			this->typeBox->Size = System::Drawing::Size(235, 135);
-			this->typeBox->TabIndex = 3;
-			this->typeBox->TabStop = false;
-			this->typeBox->Text = L"Type";
-			// 
-			// windBox
-			// 
-			this->windBox->Controls->Add(this->lightRadio);
-			this->windBox->Controls->Add(this->heavyRadio);
-			this->windBox->Location = System::Drawing::Point(38, 41);
-			this->windBox->Name = L"windBox";
-			this->windBox->Size = System::Drawing::Size(200, 135);
-			this->windBox->TabIndex = 2;
-			this->windBox->TabStop = false;
-			this->windBox->Text = L"Wind";
-			// 
-			// lightRadio
-			// 
-			this->lightRadio->AutoSize = true;
-			this->lightRadio->Location = System::Drawing::Point(39, 40);
-			this->lightRadio->Name = L"lightRadio";
-			this->lightRadio->Size = System::Drawing::Size(79, 29);
-			this->lightRadio->TabIndex = 0;
-			this->lightRadio->TabStop = true;
-			this->lightRadio->Text = L"Light";
-			this->lightRadio->UseVisualStyleBackColor = true;
-			// 
-			// heavyRadio
-			// 
-			this->heavyRadio->AutoSize = true;
-			this->heavyRadio->Location = System::Drawing::Point(39, 85);
-			this->heavyRadio->Name = L"heavyRadio";
-			this->heavyRadio->Size = System::Drawing::Size(93, 29);
-			this->heavyRadio->TabIndex = 1;
-			this->heavyRadio->TabStop = true;
-			this->heavyRadio->Text = L"Heavy";
-			this->heavyRadio->UseVisualStyleBackColor = true;
-			this->heavyRadio->CheckedChanged += gcnew System::EventHandler(this, &MyForm::RadioButton2_CheckedChanged);
-			// 
-			// owchLabel
-			// 
-			this->owchLabel->AutoSize = true;
-			this->owchLabel->Dock = System::Windows::Forms::DockStyle::Top;
-			this->owchLabel->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10.875F));
-			this->owchLabel->Location = System::Drawing::Point(92, 0);
-			this->owchLabel->Name = L"owchLabel";
-			this->owchLabel->Padding = System::Windows::Forms::Padding(0, 20, 0, 0);
-			this->owchLabel->Size = System::Drawing::Size(408, 50);
-			this->owchLabel->TabIndex = 6;
-			this->owchLabel->Text = L"OCalc Windload Correction Helper";
-			// 
-			// folderBrowserDialog1
-			// 
-			this->folderBrowserDialog1->HelpRequest += gcnew System::EventHandler(this, &MyForm::FolderBrowserDialog1_HelpRequest);
-			// 
-			// gradeBox
-			// 
-			this->gradeBox->Controls->Add(this->bRadio);
-			this->gradeBox->Controls->Add(this->aRadio);
-			this->gradeBox->Location = System::Drawing::Point(625, 41);
-			this->gradeBox->Name = L"gradeBox";
-			this->gradeBox->Size = System::Drawing::Size(103, 135);
-			this->gradeBox->TabIndex = 4;
-			this->gradeBox->TabStop = false;
-			this->gradeBox->Text = L"Grade";
-			// 
-			// loadBox
-			// 
-			this->loadBox->Controls->Add(this->eighteenRadio);
-			this->loadBox->Controls->Add(this->twntyfrRadio);
-			this->loadBox->Controls->Add(this->sixteenRadio);
-			this->loadBox->Controls->Add(this->twelveRadio);
-			this->loadBox->Controls->Add(this->eightRadio);
-			this->loadBox->Location = System::Drawing::Point(809, 41);
-			this->loadBox->Name = L"loadBox";
-			this->loadBox->Size = System::Drawing::Size(271, 135);
-			this->loadBox->TabIndex = 5;
-			this->loadBox->TabStop = false;
-			this->loadBox->Text = L"Load";
-			this->loadBox->Enter += gcnew System::EventHandler(this, &MyForm::LoadBox_Enter);
-			// 
-			// instRadio
-			// 
-			this->instRadio->AutoSize = true;
-			this->instRadio->Location = System::Drawing::Point(25, 40);
-			this->instRadio->Name = L"instRadio";
-			this->instRadio->Size = System::Drawing::Size(187, 29);
-			this->instRadio->TabIndex = 0;
-			this->instRadio->TabStop = true;
-			this->instRadio->Text = L"Installation (New)";
-			this->instRadio->UseVisualStyleBackColor = true;
-			// 
-			// replRadio
-			// 
-			this->replRadio->AutoSize = true;
-			this->replRadio->Location = System::Drawing::Point(25, 85);
-			this->replRadio->Name = L"replRadio";
-			this->replRadio->Size = System::Drawing::Size(201, 29);
-			this->replRadio->TabIndex = 1;
-			this->replRadio->TabStop = true;
-			this->replRadio->Text = L"Replacement (Old)";
-			this->replRadio->UseVisualStyleBackColor = true;
-			// 
-			// aRadio
-			// 
-			this->aRadio->AutoSize = true;
-			this->aRadio->Location = System::Drawing::Point(23, 40);
-			this->aRadio->Name = L"aRadio";
-			this->aRadio->Size = System::Drawing::Size(51, 29);
-			this->aRadio->TabIndex = 0;
-			this->aRadio->TabStop = true;
-			this->aRadio->Text = L"A";
-			this->aRadio->UseVisualStyleBackColor = true;
-			// 
-			// bRadio
-			// 
-			this->bRadio->AutoSize = true;
-			this->bRadio->Location = System::Drawing::Point(23, 85);
-			this->bRadio->Name = L"bRadio";
-			this->bRadio->Size = System::Drawing::Size(50, 29);
-			this->bRadio->TabIndex = 1;
-			this->bRadio->TabStop = true;
-			this->bRadio->Text = L"B";
-			this->bRadio->UseVisualStyleBackColor = true;
-			// 
-			// eightRadio
-			// 
-			this->eightRadio->AutoSize = true;
-			this->eightRadio->Location = System::Drawing::Point(18, 40);
-			this->eightRadio->Name = L"eightRadio";
-			this->eightRadio->Size = System::Drawing::Size(48, 29);
-			this->eightRadio->TabIndex = 0;
-			this->eightRadio->TabStop = true;
-			this->eightRadio->Text = L"8";
-			this->eightRadio->UseVisualStyleBackColor = true;
-			// 
-			// twelveRadio
-			// 
-			this->twelveRadio->AutoSize = true;
-			this->twelveRadio->Location = System::Drawing::Point(18, 85);
-			this->twelveRadio->Name = L"twelveRadio";
-			this->twelveRadio->Size = System::Drawing::Size(59, 29);
-			this->twelveRadio->TabIndex = 1;
-			this->twelveRadio->TabStop = true;
-			this->twelveRadio->Text = L"12";
-			this->twelveRadio->UseVisualStyleBackColor = true;
-			// 
-			// sixteenRadio
-			// 
-			this->sixteenRadio->AutoSize = true;
-			this->sixteenRadio->Location = System::Drawing::Point(120, 40);
-			this->sixteenRadio->Name = L"sixteenRadio";
-			this->sixteenRadio->Size = System::Drawing::Size(59, 29);
-			this->sixteenRadio->TabIndex = 2;
-			this->sixteenRadio->TabStop = true;
-			this->sixteenRadio->Text = L"16";
-			this->sixteenRadio->UseVisualStyleBackColor = true;
-			this->sixteenRadio->CheckedChanged += gcnew System::EventHandler(this, &MyForm::RadioButton2_CheckedChanged_1);
-			// 
-			// twntyfrRadio
-			// 
-			this->twntyfrRadio->AutoSize = true;
-			this->twntyfrRadio->Location = System::Drawing::Point(197, 61);
-			this->twntyfrRadio->Name = L"twntyfrRadio";
-			this->twntyfrRadio->Size = System::Drawing::Size(59, 29);
-			this->twntyfrRadio->TabIndex = 3;
-			this->twntyfrRadio->TabStop = true;
-			this->twntyfrRadio->Text = L"24";
-			this->twntyfrRadio->UseVisualStyleBackColor = true;
-			// 
-			// eighteenRadio
-			// 
-			this->eighteenRadio->AutoSize = true;
-			this->eighteenRadio->Location = System::Drawing::Point(120, 85);
-			this->eighteenRadio->Name = L"eighteenRadio";
-			this->eighteenRadio->Size = System::Drawing::Size(59, 29);
-			this->eighteenRadio->TabIndex = 4;
-			this->eighteenRadio->TabStop = true;
-			this->eighteenRadio->Text = L"18";
-			this->eighteenRadio->UseVisualStyleBackColor = true;
 			// 
 			// desiredBox
 			// 
@@ -418,9 +248,9 @@ namespace OUCH {
 			this->desiredBox->Controls->Add(this->gradeBox2);
 			this->desiredBox->Controls->Add(this->typeBox2);
 			this->desiredBox->Controls->Add(this->windBox2);
-			this->desiredBox->Location = System::Drawing::Point(6, 289);
+			this->desiredBox->Location = System::Drawing::Point(7, 301);
 			this->desiredBox->Name = L"desiredBox";
-			this->desiredBox->Size = System::Drawing::Size(1112, 229);
+			this->desiredBox->Size = System::Drawing::Size(1213, 239);
 			this->desiredBox->TabIndex = 6;
 			this->desiredBox->TabStop = false;
 			this->desiredBox->Text = L"Desired Windload";
@@ -432,9 +262,9 @@ namespace OUCH {
 			this->loadBox2->Controls->Add(this->sixteenRadio2);
 			this->loadBox2->Controls->Add(this->twelveRadio2);
 			this->loadBox2->Controls->Add(this->eightRadio2);
-			this->loadBox2->Location = System::Drawing::Point(809, 41);
+			this->loadBox2->Location = System::Drawing::Point(883, 43);
 			this->loadBox2->Name = L"loadBox2";
-			this->loadBox2->Size = System::Drawing::Size(271, 135);
+			this->loadBox2->Size = System::Drawing::Size(296, 141);
 			this->loadBox2->TabIndex = 5;
 			this->loadBox2->TabStop = false;
 			this->loadBox2->Text = L"Load";
@@ -442,65 +272,70 @@ namespace OUCH {
 			// eighteenRadio2
 			// 
 			this->eighteenRadio2->AutoSize = true;
-			this->eighteenRadio2->Location = System::Drawing::Point(120, 85);
+			this->eighteenRadio2->Location = System::Drawing::Point(131, 89);
 			this->eighteenRadio2->Name = L"eighteenRadio2";
-			this->eighteenRadio2->Size = System::Drawing::Size(59, 29);
+			this->eighteenRadio2->Size = System::Drawing::Size(67, 29);
 			this->eighteenRadio2->TabIndex = 4;
 			this->eighteenRadio2->TabStop = true;
 			this->eighteenRadio2->Text = L"18";
 			this->eighteenRadio2->UseVisualStyleBackColor = true;
+			this->eighteenRadio2->CheckedChanged += gcnew System::EventHandler(this, &MyForm::EighteenRadio2_CheckedChanged);
 			// 
 			// twntyfrRadio2
 			// 
 			this->twntyfrRadio2->AutoSize = true;
-			this->twntyfrRadio2->Location = System::Drawing::Point(197, 61);
+			this->twntyfrRadio2->Location = System::Drawing::Point(215, 64);
 			this->twntyfrRadio2->Name = L"twntyfrRadio2";
-			this->twntyfrRadio2->Size = System::Drawing::Size(59, 29);
+			this->twntyfrRadio2->Size = System::Drawing::Size(67, 29);
 			this->twntyfrRadio2->TabIndex = 3;
 			this->twntyfrRadio2->TabStop = true;
 			this->twntyfrRadio2->Text = L"24";
 			this->twntyfrRadio2->UseVisualStyleBackColor = true;
+			this->twntyfrRadio2->CheckedChanged += gcnew System::EventHandler(this, &MyForm::TwntyfrRadio2_CheckedChanged);
 			// 
 			// sixteenRadio2
 			// 
 			this->sixteenRadio2->AutoSize = true;
-			this->sixteenRadio2->Location = System::Drawing::Point(120, 40);
+			this->sixteenRadio2->Location = System::Drawing::Point(131, 42);
 			this->sixteenRadio2->Name = L"sixteenRadio2";
-			this->sixteenRadio2->Size = System::Drawing::Size(59, 29);
+			this->sixteenRadio2->Size = System::Drawing::Size(67, 29);
 			this->sixteenRadio2->TabIndex = 2;
 			this->sixteenRadio2->TabStop = true;
 			this->sixteenRadio2->Text = L"16";
 			this->sixteenRadio2->UseVisualStyleBackColor = true;
+			this->sixteenRadio2->CheckedChanged += gcnew System::EventHandler(this, &MyForm::SixteenRadio2_CheckedChanged);
 			// 
 			// twelveRadio2
 			// 
 			this->twelveRadio2->AutoSize = true;
-			this->twelveRadio2->Location = System::Drawing::Point(18, 85);
+			this->twelveRadio2->Location = System::Drawing::Point(20, 89);
 			this->twelveRadio2->Name = L"twelveRadio2";
-			this->twelveRadio2->Size = System::Drawing::Size(59, 29);
+			this->twelveRadio2->Size = System::Drawing::Size(67, 29);
 			this->twelveRadio2->TabIndex = 1;
 			this->twelveRadio2->TabStop = true;
 			this->twelveRadio2->Text = L"12";
 			this->twelveRadio2->UseVisualStyleBackColor = true;
+			this->twelveRadio2->CheckedChanged += gcnew System::EventHandler(this, &MyForm::TwelveRadio2_CheckedChanged);
 			// 
 			// eightRadio2
 			// 
 			this->eightRadio2->AutoSize = true;
-			this->eightRadio2->Location = System::Drawing::Point(18, 40);
+			this->eightRadio2->Location = System::Drawing::Point(20, 42);
 			this->eightRadio2->Name = L"eightRadio2";
-			this->eightRadio2->Size = System::Drawing::Size(48, 29);
+			this->eightRadio2->Size = System::Drawing::Size(55, 29);
 			this->eightRadio2->TabIndex = 0;
 			this->eightRadio2->TabStop = true;
 			this->eightRadio2->Text = L"8";
 			this->eightRadio2->UseVisualStyleBackColor = true;
+			this->eightRadio2->CheckedChanged += gcnew System::EventHandler(this, &MyForm::EightRadio2_CheckedChanged);
 			// 
 			// gradeBox2
 			// 
 			this->gradeBox2->Controls->Add(this->bRadio2);
 			this->gradeBox2->Controls->Add(this->aRadio2);
-			this->gradeBox2->Location = System::Drawing::Point(625, 41);
+			this->gradeBox2->Location = System::Drawing::Point(682, 43);
 			this->gradeBox2->Name = L"gradeBox2";
-			this->gradeBox2->Size = System::Drawing::Size(103, 135);
+			this->gradeBox2->Size = System::Drawing::Size(112, 141);
 			this->gradeBox2->TabIndex = 4;
 			this->gradeBox2->TabStop = false;
 			this->gradeBox2->Text = L"Grade";
@@ -508,32 +343,34 @@ namespace OUCH {
 			// bRadio2
 			// 
 			this->bRadio2->AutoSize = true;
-			this->bRadio2->Location = System::Drawing::Point(23, 85);
+			this->bRadio2->Location = System::Drawing::Point(25, 89);
 			this->bRadio2->Name = L"bRadio2";
-			this->bRadio2->Size = System::Drawing::Size(50, 29);
+			this->bRadio2->Size = System::Drawing::Size(57, 29);
 			this->bRadio2->TabIndex = 1;
 			this->bRadio2->TabStop = true;
 			this->bRadio2->Text = L"B";
 			this->bRadio2->UseVisualStyleBackColor = true;
+			this->bRadio2->CheckedChanged += gcnew System::EventHandler(this, &MyForm::BRadio2_CheckedChanged);
 			// 
 			// aRadio2
 			// 
 			this->aRadio2->AutoSize = true;
-			this->aRadio2->Location = System::Drawing::Point(23, 40);
+			this->aRadio2->Location = System::Drawing::Point(25, 42);
 			this->aRadio2->Name = L"aRadio2";
-			this->aRadio2->Size = System::Drawing::Size(51, 29);
+			this->aRadio2->Size = System::Drawing::Size(57, 29);
 			this->aRadio2->TabIndex = 0;
 			this->aRadio2->TabStop = true;
 			this->aRadio2->Text = L"A";
 			this->aRadio2->UseVisualStyleBackColor = true;
+			this->aRadio2->CheckedChanged += gcnew System::EventHandler(this, &MyForm::ARadio2_CheckedChanged);
 			// 
 			// typeBox2
 			// 
 			this->typeBox2->Controls->Add(this->replRadio2);
 			this->typeBox2->Controls->Add(this->instRadio2);
-			this->typeBox2->Location = System::Drawing::Point(310, 41);
+			this->typeBox2->Location = System::Drawing::Point(338, 43);
 			this->typeBox2->Name = L"typeBox2";
-			this->typeBox2->Size = System::Drawing::Size(235, 135);
+			this->typeBox2->Size = System::Drawing::Size(256, 141);
 			this->typeBox2->TabIndex = 3;
 			this->typeBox2->TabStop = false;
 			this->typeBox2->Text = L"Type";
@@ -541,32 +378,34 @@ namespace OUCH {
 			// replRadio2
 			// 
 			this->replRadio2->AutoSize = true;
-			this->replRadio2->Location = System::Drawing::Point(25, 85);
+			this->replRadio2->Location = System::Drawing::Point(27, 89);
 			this->replRadio2->Name = L"replRadio2";
-			this->replRadio2->Size = System::Drawing::Size(201, 29);
+			this->replRadio2->Size = System::Drawing::Size(222, 29);
 			this->replRadio2->TabIndex = 1;
 			this->replRadio2->TabStop = true;
 			this->replRadio2->Text = L"Replacement (Old)";
 			this->replRadio2->UseVisualStyleBackColor = true;
+			this->replRadio2->CheckedChanged += gcnew System::EventHandler(this, &MyForm::ReplRadio2_CheckedChanged);
 			// 
 			// instRadio2
 			// 
 			this->instRadio2->AutoSize = true;
-			this->instRadio2->Location = System::Drawing::Point(25, 40);
+			this->instRadio2->Location = System::Drawing::Point(27, 42);
 			this->instRadio2->Name = L"instRadio2";
-			this->instRadio2->Size = System::Drawing::Size(187, 29);
+			this->instRadio2->Size = System::Drawing::Size(208, 29);
 			this->instRadio2->TabIndex = 0;
 			this->instRadio2->TabStop = true;
 			this->instRadio2->Text = L"Installation (New)";
 			this->instRadio2->UseVisualStyleBackColor = true;
+			this->instRadio2->CheckedChanged += gcnew System::EventHandler(this, &MyForm::InstRadio2_CheckedChanged);
 			// 
 			// windBox2
 			// 
 			this->windBox2->Controls->Add(this->lightRadio2);
 			this->windBox2->Controls->Add(this->heavyRadio2);
-			this->windBox2->Location = System::Drawing::Point(38, 41);
+			this->windBox2->Location = System::Drawing::Point(41, 43);
 			this->windBox2->Name = L"windBox2";
-			this->windBox2->Size = System::Drawing::Size(200, 135);
+			this->windBox2->Size = System::Drawing::Size(218, 141);
 			this->windBox2->TabIndex = 2;
 			this->windBox2->TabStop = false;
 			this->windBox2->Text = L"Wind";
@@ -574,39 +413,248 @@ namespace OUCH {
 			// lightRadio2
 			// 
 			this->lightRadio2->AutoSize = true;
-			this->lightRadio2->Location = System::Drawing::Point(39, 40);
+			this->lightRadio2->Location = System::Drawing::Point(43, 42);
 			this->lightRadio2->Name = L"lightRadio2";
-			this->lightRadio2->Size = System::Drawing::Size(79, 29);
+			this->lightRadio2->Size = System::Drawing::Size(90, 29);
 			this->lightRadio2->TabIndex = 0;
 			this->lightRadio2->TabStop = true;
 			this->lightRadio2->Text = L"Light";
 			this->lightRadio2->UseVisualStyleBackColor = true;
+			this->lightRadio2->CheckedChanged += gcnew System::EventHandler(this, &MyForm::LightRadio2_CheckedChanged);
 			// 
 			// heavyRadio2
 			// 
 			this->heavyRadio2->AutoSize = true;
-			this->heavyRadio2->Location = System::Drawing::Point(39, 85);
+			this->heavyRadio2->Location = System::Drawing::Point(43, 89);
 			this->heavyRadio2->Name = L"heavyRadio2";
-			this->heavyRadio2->Size = System::Drawing::Size(93, 29);
+			this->heavyRadio2->Size = System::Drawing::Size(104, 29);
 			this->heavyRadio2->TabIndex = 1;
 			this->heavyRadio2->TabStop = true;
 			this->heavyRadio2->Text = L"Heavy";
 			this->heavyRadio2->UseVisualStyleBackColor = true;
+			this->heavyRadio2->CheckedChanged += gcnew System::EventHandler(this, &MyForm::HeavyRadio2_CheckedChanged);
+			// 
+			// currentBox
+			// 
+			this->currentBox->Controls->Add(this->loadBox);
+			this->currentBox->Controls->Add(this->gradeBox);
+			this->currentBox->Controls->Add(this->typeBox);
+			this->currentBox->Controls->Add(this->windBox);
+			this->currentBox->Location = System::Drawing::Point(7, 41);
+			this->currentBox->Name = L"currentBox";
+			this->currentBox->Size = System::Drawing::Size(1213, 239);
+			this->currentBox->TabIndex = 4;
+			this->currentBox->TabStop = false;
+			this->currentBox->Text = L"Current Windload";
+			// 
+			// loadBox
+			// 
+			this->loadBox->Controls->Add(this->eighteenRadio);
+			this->loadBox->Controls->Add(this->twntyfrRadio);
+			this->loadBox->Controls->Add(this->sixteenRadio);
+			this->loadBox->Controls->Add(this->twelveRadio);
+			this->loadBox->Controls->Add(this->eightRadio);
+			this->loadBox->Location = System::Drawing::Point(883, 43);
+			this->loadBox->Name = L"loadBox";
+			this->loadBox->Size = System::Drawing::Size(296, 141);
+			this->loadBox->TabIndex = 5;
+			this->loadBox->TabStop = false;
+			this->loadBox->Text = L"Load";
+			this->loadBox->Enter += gcnew System::EventHandler(this, &MyForm::LoadBox_Enter);
+			// 
+			// eighteenRadio
+			// 
+			this->eighteenRadio->AutoSize = true;
+			this->eighteenRadio->Location = System::Drawing::Point(131, 89);
+			this->eighteenRadio->Name = L"eighteenRadio";
+			this->eighteenRadio->Size = System::Drawing::Size(67, 29);
+			this->eighteenRadio->TabIndex = 4;
+			this->eighteenRadio->TabStop = true;
+			this->eighteenRadio->Text = L"18";
+			this->eighteenRadio->UseVisualStyleBackColor = true;
+			// 
+			// twntyfrRadio
+			// 
+			this->twntyfrRadio->AutoSize = true;
+			this->twntyfrRadio->Location = System::Drawing::Point(215, 64);
+			this->twntyfrRadio->Name = L"twntyfrRadio";
+			this->twntyfrRadio->Size = System::Drawing::Size(67, 29);
+			this->twntyfrRadio->TabIndex = 3;
+			this->twntyfrRadio->TabStop = true;
+			this->twntyfrRadio->Text = L"24";
+			this->twntyfrRadio->UseVisualStyleBackColor = true;
+			this->twntyfrRadio->CheckedChanged += gcnew System::EventHandler(this, &MyForm::TwntyfrRadio_CheckedChanged);
+			// 
+			// sixteenRadio
+			// 
+			this->sixteenRadio->AutoSize = true;
+			this->sixteenRadio->Location = System::Drawing::Point(131, 42);
+			this->sixteenRadio->Name = L"sixteenRadio";
+			this->sixteenRadio->Size = System::Drawing::Size(67, 29);
+			this->sixteenRadio->TabIndex = 2;
+			this->sixteenRadio->TabStop = true;
+			this->sixteenRadio->Text = L"16";
+			this->sixteenRadio->UseVisualStyleBackColor = true;
+			this->sixteenRadio->CheckedChanged += gcnew System::EventHandler(this, &MyForm::SixteenRadio_CheckedChanged);
+			// 
+			// twelveRadio
+			// 
+			this->twelveRadio->AutoSize = true;
+			this->twelveRadio->Location = System::Drawing::Point(20, 89);
+			this->twelveRadio->Name = L"twelveRadio";
+			this->twelveRadio->Size = System::Drawing::Size(67, 29);
+			this->twelveRadio->TabIndex = 1;
+			this->twelveRadio->TabStop = true;
+			this->twelveRadio->Text = L"12";
+			this->twelveRadio->UseVisualStyleBackColor = true;
+			this->twelveRadio->CheckedChanged += gcnew System::EventHandler(this, &MyForm::TwelveRadio_CheckedChanged);
+			// 
+			// eightRadio
+			// 
+			this->eightRadio->AutoSize = true;
+			this->eightRadio->Location = System::Drawing::Point(20, 42);
+			this->eightRadio->Name = L"eightRadio";
+			this->eightRadio->Size = System::Drawing::Size(55, 29);
+			this->eightRadio->TabIndex = 0;
+			this->eightRadio->TabStop = true;
+			this->eightRadio->Text = L"8";
+			this->eightRadio->UseVisualStyleBackColor = true;
+			this->eightRadio->CheckedChanged += gcnew System::EventHandler(this, &MyForm::EightRadio_CheckedChanged);
+			// 
+			// gradeBox
+			// 
+			this->gradeBox->Controls->Add(this->bRadio);
+			this->gradeBox->Controls->Add(this->aRadio);
+			this->gradeBox->Location = System::Drawing::Point(682, 43);
+			this->gradeBox->Name = L"gradeBox";
+			this->gradeBox->Size = System::Drawing::Size(112, 141);
+			this->gradeBox->TabIndex = 4;
+			this->gradeBox->TabStop = false;
+			this->gradeBox->Text = L"Grade";
+			// 
+			// bRadio
+			// 
+			this->bRadio->AutoSize = true;
+			this->bRadio->Location = System::Drawing::Point(25, 89);
+			this->bRadio->Name = L"bRadio";
+			this->bRadio->Size = System::Drawing::Size(57, 29);
+			this->bRadio->TabIndex = 1;
+			this->bRadio->TabStop = true;
+			this->bRadio->Text = L"B";
+			this->bRadio->UseVisualStyleBackColor = true;
+			this->bRadio->CheckedChanged += gcnew System::EventHandler(this, &MyForm::BRadio_CheckedChanged);
+			// 
+			// aRadio
+			// 
+			this->aRadio->AutoSize = true;
+			this->aRadio->Location = System::Drawing::Point(25, 42);
+			this->aRadio->Name = L"aRadio";
+			this->aRadio->Size = System::Drawing::Size(57, 29);
+			this->aRadio->TabIndex = 0;
+			this->aRadio->TabStop = true;
+			this->aRadio->Text = L"A";
+			this->aRadio->UseVisualStyleBackColor = true;
+			this->aRadio->CheckedChanged += gcnew System::EventHandler(this, &MyForm::ARadio_CheckedChanged);
+			// 
+			// typeBox
+			// 
+			this->typeBox->Controls->Add(this->replRadio);
+			this->typeBox->Controls->Add(this->instRadio);
+			this->typeBox->Location = System::Drawing::Point(338, 43);
+			this->typeBox->Name = L"typeBox";
+			this->typeBox->Size = System::Drawing::Size(256, 141);
+			this->typeBox->TabIndex = 3;
+			this->typeBox->TabStop = false;
+			this->typeBox->Text = L"Type";
+			// 
+			// replRadio
+			// 
+			this->replRadio->AutoSize = true;
+			this->replRadio->Location = System::Drawing::Point(27, 89);
+			this->replRadio->Name = L"replRadio";
+			this->replRadio->Size = System::Drawing::Size(222, 29);
+			this->replRadio->TabIndex = 1;
+			this->replRadio->TabStop = true;
+			this->replRadio->Text = L"Replacement (Old)";
+			this->replRadio->UseVisualStyleBackColor = true;
+			// 
+			// instRadio
+			// 
+			this->instRadio->AutoSize = true;
+			this->instRadio->Location = System::Drawing::Point(27, 42);
+			this->instRadio->Name = L"instRadio";
+			this->instRadio->Size = System::Drawing::Size(208, 29);
+			this->instRadio->TabIndex = 0;
+			this->instRadio->TabStop = true;
+			this->instRadio->Text = L"Installation (New)";
+			this->instRadio->UseVisualStyleBackColor = true;
+			this->instRadio->CheckedChanged += gcnew System::EventHandler(this, &MyForm::InstRadio_CheckedChanged);
+			// 
+			// windBox
+			// 
+			this->windBox->Controls->Add(this->lightRadio);
+			this->windBox->Controls->Add(this->heavyRadio);
+			this->windBox->Location = System::Drawing::Point(41, 43);
+			this->windBox->Name = L"windBox";
+			this->windBox->Size = System::Drawing::Size(218, 141);
+			this->windBox->TabIndex = 2;
+			this->windBox->TabStop = false;
+			this->windBox->Text = L"Wind";
+			// 
+			// lightRadio
+			// 
+			this->lightRadio->AutoSize = true;
+			this->lightRadio->Location = System::Drawing::Point(43, 42);
+			this->lightRadio->Name = L"lightRadio";
+			this->lightRadio->Size = System::Drawing::Size(90, 29);
+			this->lightRadio->TabIndex = 0;
+			this->lightRadio->TabStop = true;
+			this->lightRadio->Text = L"Light";
+			this->lightRadio->UseVisualStyleBackColor = true;
+			this->lightRadio->CheckedChanged += gcnew System::EventHandler(this, &MyForm::LightRadio_CheckedChanged);
+			// 
+			// heavyRadio
+			// 
+			this->heavyRadio->AutoSize = true;
+			this->heavyRadio->Location = System::Drawing::Point(43, 89);
+			this->heavyRadio->Name = L"heavyRadio";
+			this->heavyRadio->Size = System::Drawing::Size(104, 29);
+			this->heavyRadio->TabIndex = 1;
+			this->heavyRadio->TabStop = true;
+			this->heavyRadio->Text = L"Heavy";
+			this->heavyRadio->UseVisualStyleBackColor = true;
+			this->heavyRadio->CheckedChanged += gcnew System::EventHandler(this, &MyForm::HeavyRadio_CheckedChanged);
+			// 
+			// owchLabel
+			// 
+			this->owchLabel->AutoSize = true;
+			this->owchLabel->Dock = System::Windows::Forms::DockStyle::Top;
+			this->owchLabel->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10.875F));
+			this->owchLabel->Location = System::Drawing::Point(100, 0);
+			this->owchLabel->Name = L"owchLabel";
+			this->owchLabel->Padding = System::Windows::Forms::Padding(0, 21, 0, 0);
+			this->owchLabel->Size = System::Drawing::Size(463, 54);
+			this->owchLabel->TabIndex = 6;
+			this->owchLabel->Text = L"OCalc Windload Correction Helper";
+			// 
+			// folderBrowserDialog1
+			// 
+			this->folderBrowserDialog1->HelpRequest += gcnew System::EventHandler(this, &MyForm::FolderBrowserDialog1_HelpRequest);
 			// 
 			// button1
 			// 
-			this->button1->Location = System::Drawing::Point(556, 765);
+			this->button1->Location = System::Drawing::Point(607, 797);
 			this->button1->Name = L"button1";
-			this->button1->Size = System::Drawing::Size(173, 58);
+			this->button1->Size = System::Drawing::Size(189, 60);
 			this->button1->TabIndex = 8;
 			this->button1->Text = L"Export";
 			this->button1->UseVisualStyleBackColor = true;
 			// 
 			// MyForm
 			// 
-			this->AutoScaleDimensions = System::Drawing::SizeF(11, 24);
+			this->AutoScaleDimensions = System::Drawing::SizeF(12, 25);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(1250, 905);
+			this->ClientSize = System::Drawing::Size(1364, 943);
 			this->Controls->Add(this->button1);
 			this->Controls->Add(this->owchLabel);
 			this->Controls->Add(this->windloadInfoBox);
@@ -616,15 +664,6 @@ namespace OUCH {
 			this->Name = L"MyForm";
 			this->Text = L"OWCH";
 			this->windloadInfoBox->ResumeLayout(false);
-			this->currentBox->ResumeLayout(false);
-			this->typeBox->ResumeLayout(false);
-			this->typeBox->PerformLayout();
-			this->windBox->ResumeLayout(false);
-			this->windBox->PerformLayout();
-			this->gradeBox->ResumeLayout(false);
-			this->gradeBox->PerformLayout();
-			this->loadBox->ResumeLayout(false);
-			this->loadBox->PerformLayout();
 			this->desiredBox->ResumeLayout(false);
 			this->loadBox2->ResumeLayout(false);
 			this->loadBox2->PerformLayout();
@@ -634,6 +673,15 @@ namespace OUCH {
 			this->typeBox2->PerformLayout();
 			this->windBox2->ResumeLayout(false);
 			this->windBox2->PerformLayout();
+			this->currentBox->ResumeLayout(false);
+			this->loadBox->ResumeLayout(false);
+			this->loadBox->PerformLayout();
+			this->gradeBox->ResumeLayout(false);
+			this->gradeBox->PerformLayout();
+			this->typeBox->ResumeLayout(false);
+			this->typeBox->PerformLayout();
+			this->windBox->ResumeLayout(false);
+			this->windBox->PerformLayout();
 			this->ResumeLayout(false);
 			this->PerformLayout();
 
@@ -653,17 +701,72 @@ private: System::Void BrowseBtn_Click(System::Object^ sender, System::EventArgs^
 }
 private: System::Void FolderBrowserDialog1_HelpRequest(System::Object^ sender, System::EventArgs^ e) {
 }
-private: System::Void Browsebtn2_Click(System::Object^ sender, System::EventArgs^ e) {
-	folderBrowserDialog2->ShowDialog();
-	this->exportTxtbox->Text = folderBrowserDialog2->SelectedPath;
-}
 private: System::Void FolderBrowserDialog2_HelpRequest(System::Object^ sender, System::EventArgs^ e) {
-}
-private: System::Void RadioButton2_CheckedChanged(System::Object^ sender, System::EventArgs^ e) {
 }
 private: System::Void LoadBox_Enter(System::Object^ sender, System::EventArgs^ e) {
 }
-private: System::Void RadioButton2_CheckedChanged_1(System::Object^ sender, System::EventArgs^ e) {
+// Radio Buttons
+	//Current Windloads
+private: System::Void LightRadio_CheckedChanged(System::Object^ sender, System::EventArgs^ e) {
+	lightRad = true;
+}
+private: System::Void HeavyRadio_CheckedChanged(System::Object^ sender, System::EventArgs^ e) {
+	heavyRad = true;
+}
+private: System::Void InstRadio_CheckedChanged(System::Object^ sender, System::EventArgs^ e) {
+	instRad = true;
+}
+private: System::Void ARadio_CheckedChanged(System::Object^ sender, System::EventArgs^ e) {
+	agradeRad = true;
+}
+private: System::Void BRadio_CheckedChanged(System::Object^ sender, System::EventArgs^ e) {
+	bgradeRad = true;
+}
+private: System::Void EightRadio_CheckedChanged(System::Object^ sender, System::EventArgs^ e) {
+	eighteenRad = true;
+}
+private: System::Void TwelveRadio_CheckedChanged(System::Object^ sender, System::EventArgs^ e) {
+	twelveRad = true;
+}
+private: System::Void SixteenRadio_CheckedChanged(System::Object^ sender, System::EventArgs^ e) {
+	eighteenRad = true;
+}
+private: System::Void TwntyfrRadio_CheckedChanged(System::Object^ sender, System::EventArgs^ e) {
+	twntyfrRad = true;
+}
+	//Desired Windloads
+private: System::Void LightRadio2_CheckedChanged(System::Object^ sender, System::EventArgs^ e) {
+	lightRad2 = true;
+}
+private: System::Void HeavyRadio2_CheckedChanged(System::Object^ sender, System::EventArgs^ e) {
+	heavyRad2 = true;
+}
+private: System::Void InstRadio2_CheckedChanged(System::Object^ sender, System::EventArgs^ e) {
+	instRad2 = true;
+}
+private: System::Void ReplRadio2_CheckedChanged(System::Object^ sender, System::EventArgs^ e) {
+	replRad2 = true;
+}
+private: System::Void ARadio2_CheckedChanged(System::Object^ sender, System::EventArgs^ e) {
+	agradeRad2 = true;
+}
+private: System::Void BRadio2_CheckedChanged(System::Object^ sender, System::EventArgs^ e) {
+	bgradeRad2 = true;
+}
+private: System::Void EightRadio2_CheckedChanged(System::Object^ sender, System::EventArgs^ e) {
+	eightRad2 = true;
+}
+private: System::Void TwelveRadio2_CheckedChanged(System::Object^ sender, System::EventArgs^ e) {
+	twelveRad2 = true;
+}
+private: System::Void SixteenRadio2_CheckedChanged(System::Object^ sender, System::EventArgs^ e) {
+	sixteenRad2 = true;
+}
+private: System::Void EighteenRadio2_CheckedChanged(System::Object^ sender, System::EventArgs^ e) {
+	eighteenRad2 = true;
+}
+private: System::Void TwntyfrRadio2_CheckedChanged(System::Object^ sender, System::EventArgs^ e) {
+	twntyfrRad2 = true;
 }
 };
 }
