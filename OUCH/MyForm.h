@@ -94,7 +94,8 @@ namespace OUCH {
 	private: System::Windows::Forms::RadioButton^ heavyRadio2;
 	private: System::Windows::Forms::RadioButton^ eighteenRadio;
 	private: System::Windows::Forms::RadioButton^ twntyfrRadio;
-	private: System::Windows::Forms::Button^ button1;
+	private: System::Windows::Forms::Button^ exportBtn;
+
 
 
 
@@ -184,7 +185,7 @@ namespace OUCH {
 			this->heavyRadio = (gcnew System::Windows::Forms::RadioButton());
 			this->owchLabel = (gcnew System::Windows::Forms::Label());
 			this->folderBrowserDialog1 = (gcnew System::Windows::Forms::FolderBrowserDialog());
-			this->button1 = (gcnew System::Windows::Forms::Button());
+			this->exportBtn = (gcnew System::Windows::Forms::Button());
 			this->windloadInfoBox->SuspendLayout();
 			this->desiredBox->SuspendLayout();
 			this->loadBox2->SuspendLayout();
@@ -577,6 +578,7 @@ namespace OUCH {
 			this->replRadio->TabStop = true;
 			this->replRadio->Text = L"Replacement (Old)";
 			this->replRadio->UseVisualStyleBackColor = true;
+			this->replRadio->CheckedChanged += gcnew System::EventHandler(this, &MyForm::ReplRadio_CheckedChanged);
 			// 
 			// instRadio
 			// 
@@ -641,21 +643,22 @@ namespace OUCH {
 			// 
 			this->folderBrowserDialog1->HelpRequest += gcnew System::EventHandler(this, &MyForm::FolderBrowserDialog1_HelpRequest);
 			// 
-			// button1
+			// exportBtn
 			// 
-			this->button1->Location = System::Drawing::Point(607, 797);
-			this->button1->Name = L"button1";
-			this->button1->Size = System::Drawing::Size(189, 60);
-			this->button1->TabIndex = 8;
-			this->button1->Text = L"Export";
-			this->button1->UseVisualStyleBackColor = true;
+			this->exportBtn->Location = System::Drawing::Point(607, 797);
+			this->exportBtn->Name = L"exportBtn";
+			this->exportBtn->Size = System::Drawing::Size(189, 60);
+			this->exportBtn->TabIndex = 8;
+			this->exportBtn->Text = L"Export";
+			this->exportBtn->UseVisualStyleBackColor = true;
+			this->exportBtn->Click += gcnew System::EventHandler(this, &MyForm::ExportBtn_Click);
 			// 
 			// MyForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(12, 25);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(1364, 943);
-			this->Controls->Add(this->button1);
+			this->Controls->Add(this->exportBtn);
 			this->Controls->Add(this->owchLabel);
 			this->Controls->Add(this->windloadInfoBox);
 			this->Controls->Add(this->browseBtn);
@@ -709,64 +712,120 @@ private: System::Void LoadBox_Enter(System::Object^ sender, System::EventArgs^ e
 	//Current Windloads
 private: System::Void LightRadio_CheckedChanged(System::Object^ sender, System::EventArgs^ e) {
 	lightRad = true;
+	heavyRad = false;
 }
 private: System::Void HeavyRadio_CheckedChanged(System::Object^ sender, System::EventArgs^ e) {
 	heavyRad = true;
+	lightRad = false;
 }
 private: System::Void InstRadio_CheckedChanged(System::Object^ sender, System::EventArgs^ e) {
 	instRad = true;
+	replRad = false;
+}
+private: System::Void ReplRadio_CheckedChanged(System::Object^ sender, System::EventArgs^ e) {
+	instRad = false;
+	replRad = true;
 }
 private: System::Void ARadio_CheckedChanged(System::Object^ sender, System::EventArgs^ e) {
 	agradeRad = true;
+	bgradeRad = false;
 }
 private: System::Void BRadio_CheckedChanged(System::Object^ sender, System::EventArgs^ e) {
 	bgradeRad = true;
+	agradeRad = false;
 }
 private: System::Void EightRadio_CheckedChanged(System::Object^ sender, System::EventArgs^ e) {
-	eighteenRad = true;
+	eightRad = true;
+	twelveRad = false;
+	sixteenRad = false;
+	eighteenRad = false;
+	twntyfrRad = false;
+
 }
 private: System::Void TwelveRadio_CheckedChanged(System::Object^ sender, System::EventArgs^ e) {
+	eightRad = false;
 	twelveRad = true;
+	sixteenRad = false;
+	eighteenRad = false;
+	twntyfrRad = false;
 }
 private: System::Void SixteenRadio_CheckedChanged(System::Object^ sender, System::EventArgs^ e) {
-	eighteenRad = true;
+	eightRad = false;
+	twelveRad = false;
+	sixteenRad = true;
+	eighteenRad = false;
+	twntyfrRad = false;
 }
 private: System::Void TwntyfrRadio_CheckedChanged(System::Object^ sender, System::EventArgs^ e) {
+	eightRad = false;
+	twelveRad = false;
+	sixteenRad = false;
+	eighteenRad = false;
 	twntyfrRad = true;
 }
 	//Desired Windloads
 private: System::Void LightRadio2_CheckedChanged(System::Object^ sender, System::EventArgs^ e) {
 	lightRad2 = true;
+	heavyRad2 = false;
 }
 private: System::Void HeavyRadio2_CheckedChanged(System::Object^ sender, System::EventArgs^ e) {
 	heavyRad2 = true;
+	lightRad2 = false;
 }
 private: System::Void InstRadio2_CheckedChanged(System::Object^ sender, System::EventArgs^ e) {
 	instRad2 = true;
+	replRad2 = false;
 }
 private: System::Void ReplRadio2_CheckedChanged(System::Object^ sender, System::EventArgs^ e) {
 	replRad2 = true;
+	instRad2 = false;
 }
 private: System::Void ARadio2_CheckedChanged(System::Object^ sender, System::EventArgs^ e) {
 	agradeRad2 = true;
+	bgradeRad2 = false;
 }
 private: System::Void BRadio2_CheckedChanged(System::Object^ sender, System::EventArgs^ e) {
 	bgradeRad2 = true;
+	agradeRad2 = false;
 }
 private: System::Void EightRadio2_CheckedChanged(System::Object^ sender, System::EventArgs^ e) {
 	eightRad2 = true;
+	twelveRad2 = false;
+	sixteenRad2 = false;
+	eighteenRad2 = false;
+	twntyfrRad2 = false;
 }
 private: System::Void TwelveRadio2_CheckedChanged(System::Object^ sender, System::EventArgs^ e) {
+	eightRad2 = false;
 	twelveRad2 = true;
+	sixteenRad2 = false;
+	eighteenRad2 = false;
+	twntyfrRad2 = false;
 }
 private: System::Void SixteenRadio2_CheckedChanged(System::Object^ sender, System::EventArgs^ e) {
+	eightRad2 = false;
+	twelveRad2 = false;
 	sixteenRad2 = true;
+	eighteenRad2 = false;
+	twntyfrRad2 = false;
 }
 private: System::Void EighteenRadio2_CheckedChanged(System::Object^ sender, System::EventArgs^ e) {
+	eightRad2 = false;
+	twelveRad2 = false;
+	sixteenRad2 = false;
 	eighteenRad2 = true;
+	twntyfrRad2 = false;
 }
 private: System::Void TwntyfrRadio2_CheckedChanged(System::Object^ sender, System::EventArgs^ e) {
+	eightRad2 = false;
+	twelveRad2 = false;
+	sixteenRad2 = false;
+	eighteenRad2 = false;
 	twntyfrRad2 = true;
+}
+
+private: System::Void ExportBtn_Click(System::Object^ sender, System::EventArgs^ e) {
+	
 }
 };
 }
