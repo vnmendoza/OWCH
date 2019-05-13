@@ -825,7 +825,13 @@ private: System::Void TwntyfrRadio2_CheckedChanged(System::Object^ sender, Syste
 }
 
 private: System::Void ExportBtn_Click(System::Object^ sender, System::EventArgs^ e) {
-	
+	//pugi::xml_document doc;
+
+
+	//pugi::xml_parse_result result = doc.load_file("C:\Users\VNMen\Documents\Work\Test\test.xml");
+
+	//std::cout << "Load result: " << result.description() << ", mesh name: " << doc.child("mesh").attribute("name").value() << std::endl;
+
 }
 };
 }
