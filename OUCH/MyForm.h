@@ -1,4 +1,7 @@
 #pragma once
+#include "pugixml-1.9/src/pugixml.hpp"
+#include "pugixml-1.9/src/pugiconfig.hpp"
+
 
 namespace OUCH {
 
@@ -8,7 +11,10 @@ namespace OUCH {
 	using namespace System::Windows::Forms;
 	using namespace System::Data;
 	using namespace System::Drawing;
+	//
+	void parse(String^);
 
+	
 	/// <summary>
 	/// Summary for MyForm
 	/// </summary>
@@ -34,6 +40,7 @@ namespace OUCH {
 				delete components;
 			}
 		}
+		String^ address;
 	private: System::Windows::Forms::Label^ locationLabel;
 	private: System::Windows::Forms::MaskedTextBox^ locationTxtbox;
 
@@ -41,7 +48,7 @@ namespace OUCH {
 
 
 	private: System::Windows::Forms::Button^ browseBtn;
-
+		
 
 
 	private: System::Windows::Forms::GroupBox^ windloadInfoBox;
@@ -128,7 +135,9 @@ namespace OUCH {
 		bool sixteenRad2 = false;
 		bool eighteenRad2 = false;
 		bool twntyfrRad2 = false;
-		
+private: System::Windows::Forms::MaskedTextBox^ maskedTextBox1;
+protected:
+
 
 
 
@@ -186,6 +195,7 @@ namespace OUCH {
 			this->owchLabel = (gcnew System::Windows::Forms::Label());
 			this->folderBrowserDialog1 = (gcnew System::Windows::Forms::FolderBrowserDialog());
 			this->exportBtn = (gcnew System::Windows::Forms::Button());
+			this->maskedTextBox1 = (gcnew System::Windows::Forms::MaskedTextBox());
 			this->windloadInfoBox->SuspendLayout();
 			this->desiredBox->SuspendLayout();
 			this->loadBox2->SuspendLayout();
@@ -653,11 +663,20 @@ namespace OUCH {
 			this->exportBtn->UseVisualStyleBackColor = true;
 			this->exportBtn->Click += gcnew System::EventHandler(this, &MyForm::ExportBtn_Click);
 			// 
+			// maskedTextBox1
+			// 
+			this->maskedTextBox1->Location = System::Drawing::Point(360, 886);
+			this->maskedTextBox1->Name = L"maskedTextBox1";
+			this->maskedTextBox1->Size = System::Drawing::Size(688, 31);
+			this->maskedTextBox1->TabIndex = 9;
+			this->maskedTextBox1->MaskInputRejected += gcnew System::Windows::Forms::MaskInputRejectedEventHandler(this, &MyForm::MaskedTextBox1_MaskInputRejected);
+			// 
 			// MyForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(12, 25);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(1364, 943);
+			this->Controls->Add(this->maskedTextBox1);
 			this->Controls->Add(this->exportBtn);
 			this->Controls->Add(this->owchLabel);
 			this->Controls->Add(this->windloadInfoBox);
@@ -825,13 +844,35 @@ private: System::Void TwntyfrRadio2_CheckedChanged(System::Object^ sender, Syste
 }
 
 private: System::Void ExportBtn_Click(System::Object^ sender, System::EventArgs^ e) {
-	//pugi::xml_document doc;
+	
+	address = locationTxtbox->Text;	
+	parse(address);
+	
+}
+private: System::Void MaskedTextBox1_MaskInputRejected(System::Object^ sender, System::Windows::Forms::MaskInputRejectedEventArgs^ e) {
+}
+
+void parse(String^ p)
+{
+	pugi::xml_document doc;
+	pugi::xml_parse_result result = doc.load_file("test.xml");
+	maskedTextBox1->Text = address;
+	pugi::xml_parse_result result = doc.load_file(.c_str(),
+		pugi::parse_default | pugi::parse_declaration);
+	if (!result)
+	{
+		std::cout << "Parse error: " << result.description()
+			<< ", character pos= " << result.offset;
+	}
 
 
-	//pugi::xml_parse_result result = doc.load_file("C:\Users\VNMen\Documents\Work\Test\test.xml");
+		//std::cout << "Load result: " << result.description() << ", mesh name: " << doc.child("mesh").attribute("name").value() << std::endl;
 
-	//std::cout << "Load result: " << result.description() << ", mesh name: " << doc.child("mesh").attribute("name").value() << std::endl;
 
 }
+
 };
+
+
+
 }
