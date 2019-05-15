@@ -1,6 +1,18 @@
 #pragma once
 #include "pugixml-1.9/src/pugixml.hpp"
 #include "pugixml-1.9/src/pugiconfig.hpp"
+#include <msclr/marshal.h>
+#include <msclr\marshal_cppstd.h>
+
+
+void sToc(System::String^ oParameter)
+{
+	msclr::interop::marshal_context oMarshalContext;
+
+	const char* pParameter = oMarshalContext.marshal_as<const char*>(oParameter);
+	
+	// the memory pointed to by pParameter will no longer be valid when oMarshalContext goes out of scope
+}
 
 
 namespace OUCH {
@@ -28,6 +40,7 @@ namespace OUCH {
 			//TODO: Add the constructor code here
 			//
 		}
+		
 
 	protected:
 		/// <summary>
@@ -41,6 +54,7 @@ namespace OUCH {
 			}
 		}
 		String^ address;
+		
 	private: System::Windows::Forms::Label^ locationLabel;
 	private: System::Windows::Forms::MaskedTextBox^ locationTxtbox;
 
@@ -845,28 +859,43 @@ private: System::Void TwntyfrRadio2_CheckedChanged(System::Object^ sender, Syste
 
 private: System::Void ExportBtn_Click(System::Object^ sender, System::EventArgs^ e) {
 	
-	address = locationTxtbox->Text;	
+	address = locationTxtbox->Text;
+
 	parse(address);
-	
+		
 }
 private: System::Void MaskedTextBox1_MaskInputRejected(System::Object^ sender, System::Windows::Forms::MaskInputRejectedEventArgs^ e) {
 }
 
 void parse(String^ p)
 {
+	//make a xml doc
 	pugi::xml_document doc;
-	pugi::xml_parse_result result = doc.load_file("test.xml");
-	maskedTextBox1->Text = address;
-	pugi::xml_parse_result result = doc.load_file(.c_str(),
-		pugi::parse_default | pugi::parse_declaration);
+	//make set the address to a string pointer	
+	System::String^ maddress = address;
+	//add a specific pole (later this will be changed to a folder location)
+	maddress += "\\test.pplx";
+	//make the string pointer into a string literal
+	std::string unmaddress = msclr::interop::marshal_as<std::string>(maddress);
+	//make the string into a char so it can be handled by the pugiParser.
+	const char* type = unmaddress.c_str();
+	//load the doc
+	pugi::xml_parse_result result = doc.load_file(type);
+	//checking if it worked.
+	
 	if (!result)
 	{
-		std::cout << "Parse error: " << result.description()
-			<< ", character pos= " << result.offset;
+		maskedTextBox1->Text = "no result";
 	}
+	else
+	{
+		maskedTextBox1->Text = "result";
+	}
+	
+	
+	
+	
 
-
-		//std::cout << "Load result: " << result.description() << ", mesh name: " << doc.child("mesh").attribute("name").value() << std::endl;
 
 
 }
