@@ -3,6 +3,7 @@
 #include "pugixml-1.9/src/pugiconfig.hpp"
 #include <msclr/marshal.h>
 #include <msclr\marshal_cppstd.h>
+#include <iostream>
 
 
 void sToc(System::String^ oParameter)
@@ -869,6 +870,8 @@ private: System::Void MaskedTextBox1_MaskInputRejected(System::Object^ sender, S
 
 void parse(String^ p)
 {
+
+	std::cout << "Parsing..." << std::endl;
 	//make a xml doc
 	pugi::xml_document doc;
 	//make set the address to a string pointer	
@@ -883,20 +886,74 @@ void parse(String^ p)
 	pugi::xml_parse_result result = doc.load_file(type);
 	//checking if it worked.
 	
-	if (!result)
+		if (!result)
 	{
-		maskedTextBox1->Text = "no result";
+		std::cout<< "no result \n";
 	}
 	else
 	{
-		maskedTextBox1->Text = "result";
+		std::cout << "result \n";
 	}
 	
 	
+	pugi::xml_attribute attr;
+	pugi::xml_node root = doc.document_element();
+	std::string str = root.first_attribute().value();
+	//attr = doc.select_nodes.attribute("DATE");
+	pugi::xpath_node_set tools = doc.select_nodes("PPL/PPLScene/PPLChildElements/WoodPole/PPLChildElements/LoadCase/ATTRIBUTES/VALUE");
+	pugi::xpath_node tool = doc.select_node("PPL/PPLScene/PPLChildElements/WoodPole/PPLChildElements/LoadCase/ATTRIBUTES/VALUE");
+	//tool.node().find_child_by_attribute(L"Name");
+
+	for (auto& node : tools)
+	{
+		//std::cout << node.node().child_value() << '\n';
+
+		//std::cout << node.node().child_value() << '\n';
+	}
+	//C:\Users\vmend\Desktop
+	/*
+	for (pugi::xpath_node_set::const_iterator it = tools.begin(); it != tools.end(); ++it)
+	{
+		pugi::xpath_node node = *it;
+		std::cout << node.node().first_attribute().value() << "\n";
+	}
+	*/
+	
+
+	//std::string str3 = tools;
+	String^ str2 = gcnew String(str.c_str());
+	//String^ str4 = gcnew String(tools.c_str());
+	if (root.first_child())
+	{
+		//maskedTextBox1->Text = tools;
+	}
+	else
+	{
+		maskedTextBox1->Text = "no child";
+
+	}
+	//
+	//
+	//maskedTextBox1->Text = str2;
+
+	/*
+	if (attr = select.attribute("name"))  attribute really exists
+	{
+		 Read value as string
+		std::cout << "read as string: intVal=" << attr.value() << std::endl;
+		 Read value as int
+		int intVal = attr.as_int();
+		std::cout << "read as int   : intVal=" << intVal << std::endl;
+		for other types use as_double, as_bool, as_uint, ...
+	}
+	*/
+	
+	
+	
 	
 	
 
-
+	std::cout << "Complete \n";
 
 }
 
