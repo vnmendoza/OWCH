@@ -223,9 +223,6 @@ protected:
 			this->typeBox->SuspendLayout();
 			this->windBox->SuspendLayout();
 			this->SuspendLayout();
-			// 
-			// locationLabel
-			// 
 			this->locationLabel->AutoSize = true;
 			this->locationLabel->Dock = System::Windows::Forms::DockStyle::Left;
 			this->locationLabel->Location = System::Drawing::Point(0, 0);
@@ -235,9 +232,6 @@ protected:
 			this->locationLabel->TabIndex = 0;
 			this->locationLabel->Text = L"Location:";
 			this->locationLabel->Click += gcnew System::EventHandler(this, &MyForm::Label1_Click);
-			// 
-			// locationTxtbox
-			// 
 			this->locationTxtbox->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Bottom | System::Windows::Forms::AnchorStyles::Left)
 				| System::Windows::Forms::AnchorStyles::Right));
 			this->locationTxtbox->Location = System::Drawing::Point(211, 115);
@@ -245,9 +239,6 @@ protected:
 			this->locationTxtbox->Size = System::Drawing::Size(459, 31);
 			this->locationTxtbox->TabIndex = 1;
 			this->locationTxtbox->Text = L"C:\\";
-			// 
-			// browseBtn
-			// 
 			this->browseBtn->Location = System::Drawing::Point(1241, 108);
 			this->browseBtn->Name = L"browseBtn";
 			this->browseBtn->Size = System::Drawing::Size(109, 36);
@@ -255,9 +246,6 @@ protected:
 			this->browseBtn->Text = L"Browse";
 			this->browseBtn->UseVisualStyleBackColor = true;
 			this->browseBtn->Click += gcnew System::EventHandler(this, &MyForm::BrowseBtn_Click);
-			// 
-			// windloadInfoBox
-			// 
 			this->windloadInfoBox->Controls->Add(this->desiredBox);
 			this->windloadInfoBox->Controls->Add(this->currentBox);
 			this->windloadInfoBox->Location = System::Drawing::Point(109, 190);
@@ -267,9 +255,6 @@ protected:
 			this->windloadInfoBox->TabStop = false;
 			this->windloadInfoBox->Text = L"WindLoad Information";
 			this->windloadInfoBox->Enter += gcnew System::EventHandler(this, &MyForm::GroupBox1_Enter);
-			// 
-			// desiredBox
-			// 
 			this->desiredBox->Controls->Add(this->loadBox2);
 			this->desiredBox->Controls->Add(this->gradeBox2);
 			this->desiredBox->Controls->Add(this->typeBox2);
@@ -280,9 +265,6 @@ protected:
 			this->desiredBox->TabIndex = 6;
 			this->desiredBox->TabStop = false;
 			this->desiredBox->Text = L"Desired Windload";
-			// 
-			// loadBox2
-			// 
 			this->loadBox2->Controls->Add(this->eighteenRadio2);
 			this->loadBox2->Controls->Add(this->twntyfrRadio2);
 			this->loadBox2->Controls->Add(this->sixteenRadio2);
@@ -294,9 +276,6 @@ protected:
 			this->loadBox2->TabIndex = 5;
 			this->loadBox2->TabStop = false;
 			this->loadBox2->Text = L"Load";
-			// 
-			// eighteenRadio2
-			// 
 			this->eighteenRadio2->AutoSize = true;
 			this->eighteenRadio2->Location = System::Drawing::Point(131, 89);
 			this->eighteenRadio2->Name = L"eighteenRadio2";
@@ -306,9 +285,6 @@ protected:
 			this->eighteenRadio2->Text = L"18";
 			this->eighteenRadio2->UseVisualStyleBackColor = true;
 			this->eighteenRadio2->CheckedChanged += gcnew System::EventHandler(this, &MyForm::EighteenRadio2_CheckedChanged);
-			// 
-			// twntyfrRadio2
-			// 
 			this->twntyfrRadio2->AutoSize = true;
 			this->twntyfrRadio2->Location = System::Drawing::Point(215, 64);
 			this->twntyfrRadio2->Name = L"twntyfrRadio2";
@@ -318,9 +294,6 @@ protected:
 			this->twntyfrRadio2->Text = L"24";
 			this->twntyfrRadio2->UseVisualStyleBackColor = true;
 			this->twntyfrRadio2->CheckedChanged += gcnew System::EventHandler(this, &MyForm::TwntyfrRadio2_CheckedChanged);
-			// 
-			// sixteenRadio2
-			// 
 			this->sixteenRadio2->AutoSize = true;
 			this->sixteenRadio2->Location = System::Drawing::Point(131, 42);
 			this->sixteenRadio2->Name = L"sixteenRadio2";
@@ -330,9 +303,6 @@ protected:
 			this->sixteenRadio2->Text = L"16";
 			this->sixteenRadio2->UseVisualStyleBackColor = true;
 			this->sixteenRadio2->CheckedChanged += gcnew System::EventHandler(this, &MyForm::SixteenRadio2_CheckedChanged);
-			// 
-			// twelveRadio2
-			// 
 			this->twelveRadio2->AutoSize = true;
 			this->twelveRadio2->Location = System::Drawing::Point(20, 89);
 			this->twelveRadio2->Name = L"twelveRadio2";
@@ -342,9 +312,6 @@ protected:
 			this->twelveRadio2->Text = L"12";
 			this->twelveRadio2->UseVisualStyleBackColor = true;
 			this->twelveRadio2->CheckedChanged += gcnew System::EventHandler(this, &MyForm::TwelveRadio2_CheckedChanged);
-			// 
-			// eightRadio2
-			// 
 			this->eightRadio2->AutoSize = true;
 			this->eightRadio2->Location = System::Drawing::Point(20, 42);
 			this->eightRadio2->Name = L"eightRadio2";
@@ -354,9 +321,6 @@ protected:
 			this->eightRadio2->Text = L"8";
 			this->eightRadio2->UseVisualStyleBackColor = true;
 			this->eightRadio2->CheckedChanged += gcnew System::EventHandler(this, &MyForm::EightRadio2_CheckedChanged);
-			// 
-			// gradeBox2
-			// 
 			this->gradeBox2->Controls->Add(this->bRadio2);
 			this->gradeBox2->Controls->Add(this->aRadio2);
 			this->gradeBox2->Location = System::Drawing::Point(682, 43);
@@ -365,9 +329,6 @@ protected:
 			this->gradeBox2->TabIndex = 4;
 			this->gradeBox2->TabStop = false;
 			this->gradeBox2->Text = L"Grade";
-			// 
-			// bRadio2
-			// 
 			this->bRadio2->AutoSize = true;
 			this->bRadio2->Location = System::Drawing::Point(25, 89);
 			this->bRadio2->Name = L"bRadio2";
@@ -377,9 +338,6 @@ protected:
 			this->bRadio2->Text = L"B";
 			this->bRadio2->UseVisualStyleBackColor = true;
 			this->bRadio2->CheckedChanged += gcnew System::EventHandler(this, &MyForm::BRadio2_CheckedChanged);
-			// 
-			// aRadio2
-			// 
 			this->aRadio2->AutoSize = true;
 			this->aRadio2->Location = System::Drawing::Point(25, 42);
 			this->aRadio2->Name = L"aRadio2";
@@ -389,9 +347,6 @@ protected:
 			this->aRadio2->Text = L"A";
 			this->aRadio2->UseVisualStyleBackColor = true;
 			this->aRadio2->CheckedChanged += gcnew System::EventHandler(this, &MyForm::ARadio2_CheckedChanged);
-			// 
-			// typeBox2
-			// 
 			this->typeBox2->Controls->Add(this->replRadio2);
 			this->typeBox2->Controls->Add(this->instRadio2);
 			this->typeBox2->Location = System::Drawing::Point(338, 43);
@@ -400,9 +355,6 @@ protected:
 			this->typeBox2->TabIndex = 3;
 			this->typeBox2->TabStop = false;
 			this->typeBox2->Text = L"Type";
-			// 
-			// replRadio2
-			// 
 			this->replRadio2->AutoSize = true;
 			this->replRadio2->Location = System::Drawing::Point(27, 89);
 			this->replRadio2->Name = L"replRadio2";
@@ -412,9 +364,6 @@ protected:
 			this->replRadio2->Text = L"Replacement (Old)";
 			this->replRadio2->UseVisualStyleBackColor = true;
 			this->replRadio2->CheckedChanged += gcnew System::EventHandler(this, &MyForm::ReplRadio2_CheckedChanged);
-			// 
-			// instRadio2
-			// 
 			this->instRadio2->AutoSize = true;
 			this->instRadio2->Location = System::Drawing::Point(27, 42);
 			this->instRadio2->Name = L"instRadio2";
@@ -424,9 +373,6 @@ protected:
 			this->instRadio2->Text = L"Installation (New)";
 			this->instRadio2->UseVisualStyleBackColor = true;
 			this->instRadio2->CheckedChanged += gcnew System::EventHandler(this, &MyForm::InstRadio2_CheckedChanged);
-			// 
-			// windBox2
-			// 
 			this->windBox2->Controls->Add(this->lightRadio2);
 			this->windBox2->Controls->Add(this->heavyRadio2);
 			this->windBox2->Location = System::Drawing::Point(41, 43);
@@ -435,9 +381,6 @@ protected:
 			this->windBox2->TabIndex = 2;
 			this->windBox2->TabStop = false;
 			this->windBox2->Text = L"Wind";
-			// 
-			// lightRadio2
-			// 
 			this->lightRadio2->AutoSize = true;
 			this->lightRadio2->Location = System::Drawing::Point(43, 42);
 			this->lightRadio2->Name = L"lightRadio2";
@@ -447,9 +390,6 @@ protected:
 			this->lightRadio2->Text = L"Light";
 			this->lightRadio2->UseVisualStyleBackColor = true;
 			this->lightRadio2->CheckedChanged += gcnew System::EventHandler(this, &MyForm::LightRadio2_CheckedChanged);
-			// 
-			// heavyRadio2
-			// 
 			this->heavyRadio2->AutoSize = true;
 			this->heavyRadio2->Location = System::Drawing::Point(43, 89);
 			this->heavyRadio2->Name = L"heavyRadio2";
@@ -459,9 +399,6 @@ protected:
 			this->heavyRadio2->Text = L"Heavy";
 			this->heavyRadio2->UseVisualStyleBackColor = true;
 			this->heavyRadio2->CheckedChanged += gcnew System::EventHandler(this, &MyForm::HeavyRadio2_CheckedChanged);
-			// 
-			// currentBox
-			// 
 			this->currentBox->Controls->Add(this->loadBox);
 			this->currentBox->Controls->Add(this->gradeBox);
 			this->currentBox->Controls->Add(this->typeBox);
@@ -472,9 +409,6 @@ protected:
 			this->currentBox->TabIndex = 4;
 			this->currentBox->TabStop = false;
 			this->currentBox->Text = L"Current Windload";
-			// 
-			// loadBox
-			// 
 			this->loadBox->Controls->Add(this->eighteenRadio);
 			this->loadBox->Controls->Add(this->twntyfrRadio);
 			this->loadBox->Controls->Add(this->sixteenRadio);
@@ -487,9 +421,6 @@ protected:
 			this->loadBox->TabStop = false;
 			this->loadBox->Text = L"Load";
 			this->loadBox->Enter += gcnew System::EventHandler(this, &MyForm::LoadBox_Enter);
-			// 
-			// eighteenRadio
-			// 
 			this->eighteenRadio->AutoSize = true;
 			this->eighteenRadio->Location = System::Drawing::Point(131, 89);
 			this->eighteenRadio->Name = L"eighteenRadio";
@@ -498,9 +429,6 @@ protected:
 			this->eighteenRadio->TabStop = true;
 			this->eighteenRadio->Text = L"18";
 			this->eighteenRadio->UseVisualStyleBackColor = true;
-			// 
-			// twntyfrRadio
-			// 
 			this->twntyfrRadio->AutoSize = true;
 			this->twntyfrRadio->Location = System::Drawing::Point(215, 64);
 			this->twntyfrRadio->Name = L"twntyfrRadio";
@@ -510,9 +438,6 @@ protected:
 			this->twntyfrRadio->Text = L"24";
 			this->twntyfrRadio->UseVisualStyleBackColor = true;
 			this->twntyfrRadio->CheckedChanged += gcnew System::EventHandler(this, &MyForm::TwntyfrRadio_CheckedChanged);
-			// 
-			// sixteenRadio
-			// 
 			this->sixteenRadio->AutoSize = true;
 			this->sixteenRadio->Location = System::Drawing::Point(131, 42);
 			this->sixteenRadio->Name = L"sixteenRadio";
@@ -522,9 +447,6 @@ protected:
 			this->sixteenRadio->Text = L"16";
 			this->sixteenRadio->UseVisualStyleBackColor = true;
 			this->sixteenRadio->CheckedChanged += gcnew System::EventHandler(this, &MyForm::SixteenRadio_CheckedChanged);
-			// 
-			// twelveRadio
-			// 
 			this->twelveRadio->AutoSize = true;
 			this->twelveRadio->Location = System::Drawing::Point(20, 89);
 			this->twelveRadio->Name = L"twelveRadio";
@@ -534,9 +456,6 @@ protected:
 			this->twelveRadio->Text = L"12";
 			this->twelveRadio->UseVisualStyleBackColor = true;
 			this->twelveRadio->CheckedChanged += gcnew System::EventHandler(this, &MyForm::TwelveRadio_CheckedChanged);
-			// 
-			// eightRadio
-			// 
 			this->eightRadio->AutoSize = true;
 			this->eightRadio->Location = System::Drawing::Point(20, 42);
 			this->eightRadio->Name = L"eightRadio";
@@ -546,9 +465,6 @@ protected:
 			this->eightRadio->Text = L"8";
 			this->eightRadio->UseVisualStyleBackColor = true;
 			this->eightRadio->CheckedChanged += gcnew System::EventHandler(this, &MyForm::EightRadio_CheckedChanged);
-			// 
-			// gradeBox
-			// 
 			this->gradeBox->Controls->Add(this->bRadio);
 			this->gradeBox->Controls->Add(this->aRadio);
 			this->gradeBox->Location = System::Drawing::Point(682, 43);
@@ -557,9 +473,6 @@ protected:
 			this->gradeBox->TabIndex = 4;
 			this->gradeBox->TabStop = false;
 			this->gradeBox->Text = L"Grade";
-			// 
-			// bRadio
-			// 
 			this->bRadio->AutoSize = true;
 			this->bRadio->Location = System::Drawing::Point(25, 89);
 			this->bRadio->Name = L"bRadio";
@@ -569,9 +482,6 @@ protected:
 			this->bRadio->Text = L"B";
 			this->bRadio->UseVisualStyleBackColor = true;
 			this->bRadio->CheckedChanged += gcnew System::EventHandler(this, &MyForm::BRadio_CheckedChanged);
-			// 
-			// aRadio
-			// 
 			this->aRadio->AutoSize = true;
 			this->aRadio->Location = System::Drawing::Point(25, 42);
 			this->aRadio->Name = L"aRadio";
@@ -581,9 +491,6 @@ protected:
 			this->aRadio->Text = L"A";
 			this->aRadio->UseVisualStyleBackColor = true;
 			this->aRadio->CheckedChanged += gcnew System::EventHandler(this, &MyForm::ARadio_CheckedChanged);
-			// 
-			// typeBox
-			// 
 			this->typeBox->Controls->Add(this->replRadio);
 			this->typeBox->Controls->Add(this->instRadio);
 			this->typeBox->Location = System::Drawing::Point(338, 43);
@@ -592,9 +499,6 @@ protected:
 			this->typeBox->TabIndex = 3;
 			this->typeBox->TabStop = false;
 			this->typeBox->Text = L"Type";
-			// 
-			// replRadio
-			// 
 			this->replRadio->AutoSize = true;
 			this->replRadio->Location = System::Drawing::Point(27, 89);
 			this->replRadio->Name = L"replRadio";
@@ -604,9 +508,6 @@ protected:
 			this->replRadio->Text = L"Replacement (Old)";
 			this->replRadio->UseVisualStyleBackColor = true;
 			this->replRadio->CheckedChanged += gcnew System::EventHandler(this, &MyForm::ReplRadio_CheckedChanged);
-			// 
-			// instRadio
-			// 
 			this->instRadio->AutoSize = true;
 			this->instRadio->Location = System::Drawing::Point(27, 42);
 			this->instRadio->Name = L"instRadio";
@@ -616,9 +517,6 @@ protected:
 			this->instRadio->Text = L"Installation (New)";
 			this->instRadio->UseVisualStyleBackColor = true;
 			this->instRadio->CheckedChanged += gcnew System::EventHandler(this, &MyForm::InstRadio_CheckedChanged);
-			// 
-			// windBox
-			// 
 			this->windBox->Controls->Add(this->lightRadio);
 			this->windBox->Controls->Add(this->heavyRadio);
 			this->windBox->Location = System::Drawing::Point(41, 43);
@@ -627,9 +525,6 @@ protected:
 			this->windBox->TabIndex = 2;
 			this->windBox->TabStop = false;
 			this->windBox->Text = L"Wind";
-			// 
-			// lightRadio
-			// 
 			this->lightRadio->AutoSize = true;
 			this->lightRadio->Location = System::Drawing::Point(43, 42);
 			this->lightRadio->Name = L"lightRadio";
@@ -639,9 +534,6 @@ protected:
 			this->lightRadio->Text = L"Light";
 			this->lightRadio->UseVisualStyleBackColor = true;
 			this->lightRadio->CheckedChanged += gcnew System::EventHandler(this, &MyForm::LightRadio_CheckedChanged);
-			// 
-			// heavyRadio
-			// 
 			this->heavyRadio->AutoSize = true;
 			this->heavyRadio->Location = System::Drawing::Point(43, 89);
 			this->heavyRadio->Name = L"heavyRadio";
@@ -651,25 +543,16 @@ protected:
 			this->heavyRadio->Text = L"Heavy";
 			this->heavyRadio->UseVisualStyleBackColor = true;
 			this->heavyRadio->CheckedChanged += gcnew System::EventHandler(this, &MyForm::HeavyRadio_CheckedChanged);
-			// 
-			// owchLabel
-			// 
 			this->owchLabel->AutoSize = true;
 			this->owchLabel->Dock = System::Windows::Forms::DockStyle::Top;
-			this->owchLabel->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10.875F));
+			this->owchLabel->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10.875));
 			this->owchLabel->Location = System::Drawing::Point(100, 0);
 			this->owchLabel->Name = L"owchLabel";
 			this->owchLabel->Padding = System::Windows::Forms::Padding(0, 21, 0, 0);
 			this->owchLabel->Size = System::Drawing::Size(463, 54);
 			this->owchLabel->TabIndex = 6;
 			this->owchLabel->Text = L"OCalc Windload Correction Helper";
-			// 
-			// folderBrowserDialog1
-			// 
 			this->folderBrowserDialog1->HelpRequest += gcnew System::EventHandler(this, &MyForm::FolderBrowserDialog1_HelpRequest);
-			// 
-			// exportBtn
-			// 
 			this->exportBtn->Location = System::Drawing::Point(607, 797);
 			this->exportBtn->Name = L"exportBtn";
 			this->exportBtn->Size = System::Drawing::Size(189, 60);
@@ -677,17 +560,11 @@ protected:
 			this->exportBtn->Text = L"Export";
 			this->exportBtn->UseVisualStyleBackColor = true;
 			this->exportBtn->Click += gcnew System::EventHandler(this, &MyForm::ExportBtn_Click);
-			// 
-			// maskedTextBox1
-			// 
 			this->maskedTextBox1->Location = System::Drawing::Point(360, 886);
 			this->maskedTextBox1->Name = L"maskedTextBox1";
 			this->maskedTextBox1->Size = System::Drawing::Size(688, 31);
 			this->maskedTextBox1->TabIndex = 9;
 			this->maskedTextBox1->MaskInputRejected += gcnew System::Windows::Forms::MaskInputRejectedEventHandler(this, &MyForm::MaskedTextBox1_MaskInputRejected);
-			// 
-			// MyForm
-			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(12, 25);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(1364, 943);
@@ -883,76 +760,273 @@ void parse(String^ p)
 	//make the string into a char so it can be handled by the pugiParser.
 	const char* type = unmaddress.c_str();
 	//load the doc
-	pugi::xml_parse_result result = doc.load_file(type);
+	pugi::xml_parse_result result = doc.load_file(type);	
+	pugi::xml_node root = doc.document_element();
 	//checking if it worked.
 	
-		if (!result)
+	if (!result)
 	{
 		std::cout<< "no result \n";
 	}
 	else
 	{
 		std::cout << "result \n";
-	}
-	
-	
-	pugi::xml_attribute attr;
-	pugi::xml_node root = doc.document_element();
-	std::string str = root.first_attribute().value();
-	//attr = doc.select_nodes.attribute("DATE");
-	pugi::xpath_node_set tools = doc.select_nodes("PPL/PPLScene/PPLChildElements/WoodPole/PPLChildElements/LoadCase/ATTRIBUTES/VALUE");
-	pugi::xpath_node tool = doc.select_node("PPL/PPLScene/PPLChildElements/WoodPole/PPLChildElements/LoadCase/ATTRIBUTES/VALUE");
-	//tool.node().find_child_by_attribute(L"Name");
+		
+		pugi::xpath_node attributes = doc.select_node("PPL/PPLScene/PPLChildElements/WoodPole/PPLChildElements/LoadCase/ATTRIBUTES");
 
-	for (auto& node : tools)
-	{
-		//std::cout << node.node().child_value() << '\n';
+		pugi::xml_text description = attributes.node().find_child_by_attribute("VALUE", "NAME", "DescriptionOverride").text();
+		pugi::xml_text name = attributes.node().find_child_by_attribute("VALUE", "NAME", "Name").text();
+		pugi::xml_text windSpeed = attributes.node().find_child_by_attribute("VALUE", "NAME", "Wind Speed").text();
+		pugi::xml_text ice = attributes.node().find_child_by_attribute("VALUE", "NAME", "Radial Ice").text();		
+		pugi::xml_text HorizWindPress = attributes.node().find_child_by_attribute("VALUE", "NAME", "Horiz Wind Pres").text();
+		pugi::xml_text tempMin = attributes.node().find_child_by_attribute("VALUE", "NAME", "TempMin").text();
+		pugi::xml_text grade = attributes.node().find_child_by_attribute("VALUE", "NAME", "Construction Grade").text();
+		pugi::xml_text instRepl = attributes.node().find_child_by_attribute("VALUE", "NAME", "Installation or Replacement").text();
+		pugi::xml_text poleStength = attributes.node().find_child_by_attribute("VALUE", "NAME", "Pole Strength Factor").text();
+		pugi::xml_text xarmStrength = attributes.node().find_child_by_attribute("VALUE", "NAME", "Crossarm Strength Factor").text();
+		pugi::xml_text guyStrength = attributes.node().find_child_by_attribute("VALUE", "NAME", "Guy Strength Factor").text();
+		pugi::xml_text anchorStregth = attributes.node().find_child_by_attribute("VALUE", "NAME", "Anchor Strength Factor").text();
+		std::cout << attributes.node().find_child_by_attribute("VALUE", "NAME", "DescriptionOverride").child_value() << std::endl;
+	
 
-		//std::cout << node.node().child_value() << '\n';
+		if (eightRad2)
+		{
+			if (lightRad2)
+			{
+				if (instRad2)
+				{
+					if (agradeRad2)
+					{
+						description.set("Wood- GO 95 Grade A - Light Loading at Installation (8 lbs.)");
+						name.set("GO 95 Light Grade A at Installation");
+						ice.set("0");
+						windSpeed.set("55.9016994374947");
+						HorizWindPress.set("8");
+						tempMin.set("25");
+						grade.set("A");
+						instRepl.set("At Installation");
+						poleStength.set("0.25");
+						xarmStrength.set("0.5");
+						guyStrength.set("0.5");
+						anchorStregth.set("0.5");
+					}
+					else if (bgradeRad2)
+					{
+						
+					}
+				}
+				else if (replRad2)
+				{
+
+				}
+
+			}
+			else if (heavyRad2)
+			{
+				if (instRad2)
+				{
+					if (agradeRad2)
+
+					{
+
+					}
+					else if (bgradeRad2)
+					{
+
+					}
+				}
+				else if (replRad2)
+				{
+
+				}
+			}
+		}
+		else if (twelveRad2)
+		{
+			if (lightRad2)
+			{
+				if (instRad2)
+				{
+					if (agradeRad2)
+
+					{
+
+					}
+					else if (bgradeRad2)
+					{
+
+					}
+				}
+				else if (replRad2)
+				{
+
+				}
+
+			}
+			else if (heavyRad2)
+			{
+				if (instRad2)
+				{
+					if (agradeRad2)
+
+					{
+
+					}
+					else if (bgradeRad2)
+					{
+
+					}
+				}
+				else if (replRad2)
+				{
+
+				}
+			}
+
+		}
+		else if (sixteenRad2)
+		{
+			if (lightRad2)
+			{
+				if (instRad2)
+				{
+					if (agradeRad2)
+
+					{
+
+					}
+					else if (bgradeRad2)
+					{
+
+					}
+				}
+				else if (replRad2)
+				{
+
+				}
+
+			}
+			else if (heavyRad2)
+			{
+				if (instRad2)
+				{
+					if (agradeRad2)
+
+					{
+
+					}
+					else if (bgradeRad2)
+					{
+
+					}
+				}
+				else if (replRad2)
+				{
+
+				}
+			}
+		}
+		else if (eighteenRad2)
+		{
+			if (lightRad2)
+			{
+				if (instRad2)
+				{
+					if (agradeRad2)
+
+					{
+
+					}
+					else if (bgradeRad2)
+					{
+
+					}
+				}
+				else if (replRad2)
+				{
+
+				}
+
+			}
+			else if (heavyRad2)
+			{
+				if (instRad2)
+				{
+					if (agradeRad2)
+
+					{
+
+					}
+					else if (bgradeRad2)
+					{
+
+					}
+				}
+				else if (replRad2)
+				{
+
+				}
+			}
+		}
+		else if (twntyfrRad2)
+		{
+			if (lightRad2)
+			{
+				if (instRad2)
+				{
+					if (agradeRad2)
+
+					{
+
+					}
+					else if (bgradeRad2)
+					{
+
+					}
+				}
+				else if (replRad2)
+				{
+
+				}
+
+			}
+			else if (heavyRad2)
+			{
+				if (instRad2)
+				{
+					if (agradeRad2)
+
+					{
+
+					}
+					else if (bgradeRad2)
+					{
+
+					}
+				}
+				else if (replRad2)
+				{
+
+				}
+			}
+		}
 	}
+		doc.save_file("C:\\Users\\vmend\\Desktop\\test.pplx");
+	
+			
+	
+
 	//C:\Users\vmend\Desktop
 	/*
-	for (pugi::xpath_node_set::const_iterator it = tools.begin(); it != tools.end(); ++it)
+	for (auto& node : tools)
 	{
-		pugi::xpath_node node = *it;
-		std::cout << node.node().first_attribute().value() << "\n";
+		std::cout << node.node().child_value() << '\n';
+
+		std::cout << node.node().child_value() << '\n';
 	}
 	*/
-	
 
-	//std::string str3 = tools;
-	String^ str2 = gcnew String(str.c_str());
-	//String^ str4 = gcnew String(tools.c_str());
-	if (root.first_child())
-	{
-		//maskedTextBox1->Text = tools;
-	}
-	else
-	{
-		maskedTextBox1->Text = "no child";
-
-	}
-	//
-	//
-	//maskedTextBox1->Text = str2;
-
-	/*
-	if (attr = select.attribute("name"))  attribute really exists
-	{
-		 Read value as string
-		std::cout << "read as string: intVal=" << attr.value() << std::endl;
-		 Read value as int
-		int intVal = attr.as_int();
-		std::cout << "read as int   : intVal=" << intVal << std::endl;
-		for other types use as_double, as_bool, as_uint, ...
-	}
-	*/
 	
-	
-	
-	
-	
-
 	std::cout << "Complete \n";
 
 }
