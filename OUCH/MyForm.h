@@ -4,16 +4,14 @@
 #include <msclr/marshal.h>
 #include <msclr\marshal_cppstd.h>
 #include <iostream>
+#include <sys/types.h>
+#include <dirent.h>
+#include <vector>
+#include <string>
 
 
-void sToc(System::String^ oParameter)
-{
-	msclr::interop::marshal_context oMarshalContext;
 
-	const char* pParameter = oMarshalContext.marshal_as<const char*>(oParameter);
-	
-	// the memory pointed to by pParameter will no longer be valid when oMarshalContext goes out of scope
-}
+
 
 
 namespace OUCH {
@@ -25,8 +23,10 @@ namespace OUCH {
 	using namespace System::Data;
 	using namespace System::Drawing;
 	//
-	void parse(String^);
-
+	void parse(std::string);
+	typedef std::vector<std::string> stringvec;
+	void read_directory(const std::string&, stringvec&);
+	std::string convToString(System::String^);
 	
 	/// <summary>
 	/// Summary for MyForm
@@ -60,7 +60,6 @@ namespace OUCH {
 	private: System::Windows::Forms::MaskedTextBox^ locationTxtbox;
 
 	protected:
-
 
 	private: System::Windows::Forms::Button^ browseBtn;
 		
@@ -738,27 +737,48 @@ private: System::Void TwntyfrRadio2_CheckedChanged(System::Object^ sender, Syste
 private: System::Void ExportBtn_Click(System::Object^ sender, System::EventArgs^ e) {
 	
 	address = locationTxtbox->Text;
-
-	parse(address);
+	std::vector<std::string> vec;
+	std::string strAddress = convToString(address);
+	read_directory(strAddress,vec);
+	strAddress = strAddress + "\\";
+	std::string fileAddress;
+	for (std::vector<std::string>::const_iterator i = vec.begin(); i != vec.end(); ++i)
+	{
+		
+		std::cout << strAddress << *i << "\n";
+		fileAddress = strAddress + *i;
+		parse(fileAddress);
+	}
+		
+	
+	
 		
 }
 private: System::Void MaskedTextBox1_MaskInputRejected(System::Object^ sender, System::Windows::Forms::MaskInputRejectedEventArgs^ e) {
 }
 
-void parse(String^ p)
+std::string convToString(System::String^ sysStr)
+{
+	std::string str = msclr::interop::marshal_as<std::string>(sysStr);
+	return str;
+}
+void parse(std::string p)
 {
 
 	std::cout << "Parsing..." << std::endl;
 	//make a xml doc
 	pugi::xml_document doc;
-	//make set the address to a string pointer	
+	/*
 	System::String^ maddress = address;
 	//add a specific pole (later this will be changed to a folder location)
 	maddress += "\\test.pplx";
 	//make the string pointer into a string literal
 	std::string unmaddress = msclr::interop::marshal_as<std::string>(maddress);
+	
+	*/
+	
 	//make the string into a char so it can be handled by the pugiParser.
-	const char* type = unmaddress.c_str();
+	const char* type = p.c_str();
 	//load the doc
 	pugi::xml_parse_result result = doc.load_file(type);	
 	pugi::xml_node root = doc.document_element();
@@ -776,260 +796,797 @@ void parse(String^ p)
 
 		pugi::xml_text description = attributes.node().find_child_by_attribute("VALUE", "NAME", "DescriptionOverride").text();
 		pugi::xml_text name = attributes.node().find_child_by_attribute("VALUE", "NAME", "Name").text();
+		pugi::xml_text lightHeavy = attributes.node().find_child_by_attribute("VALUE", "NAME", "District").text();
+		pugi::xml_text ice = attributes.node().find_child_by_attribute("VALUE", "NAME", "Radial Ice").text();
 		pugi::xml_text windSpeed = attributes.node().find_child_by_attribute("VALUE", "NAME", "Wind Speed").text();
-		pugi::xml_text ice = attributes.node().find_child_by_attribute("VALUE", "NAME", "Radial Ice").text();		
 		pugi::xml_text HorizWindPress = attributes.node().find_child_by_attribute("VALUE", "NAME", "Horiz Wind Pres").text();
 		pugi::xml_text tempMin = attributes.node().find_child_by_attribute("VALUE", "NAME", "TempMin").text();
 		pugi::xml_text grade = attributes.node().find_child_by_attribute("VALUE", "NAME", "Construction Grade").text();
 		pugi::xml_text instRepl = attributes.node().find_child_by_attribute("VALUE", "NAME", "Installation or Replacement").text();
-		pugi::xml_text poleStength = attributes.node().find_child_by_attribute("VALUE", "NAME", "Pole Strength Factor").text();
+		pugi::xml_text poleStrength = attributes.node().find_child_by_attribute("VALUE", "NAME", "Pole Strength Factor").text();
 		pugi::xml_text xarmStrength = attributes.node().find_child_by_attribute("VALUE", "NAME", "Crossarm Strength Factor").text();
 		pugi::xml_text guyStrength = attributes.node().find_child_by_attribute("VALUE", "NAME", "Guy Strength Factor").text();
 		pugi::xml_text anchorStregth = attributes.node().find_child_by_attribute("VALUE", "NAME", "Anchor Strength Factor").text();
 		std::cout << attributes.node().find_child_by_attribute("VALUE", "NAME", "DescriptionOverride").child_value() << std::endl;
-	
+		/*
+		description.set("");
+		name.set("");
+		lightHeavy.set("");
+		ice.set("");
+		windSpeed.set("");
+		HorizWindPress.set("");
+		tempMin.set("");
+		grade.set("");
+		instRepl.set("");
+		poleStrength.set("");
+		xarmStrength.set("");
+		guyStrength.set("");
+		anchorStregth.set("");
+		*/
+		
 
-		if (eightRad2)
+		if (eightRad2) //8 lb
 		{
 			if (lightRad2)
 			{
 				if (instRad2)
 				{
-					if (agradeRad2)
+					if (agradeRad2) // done
 					{
 						description.set("Wood- GO 95 Grade A - Light Loading at Installation (8 lbs.)");
 						name.set("GO 95 Light Grade A at Installation");
+						lightHeavy.set("Light");
 						ice.set("0");
 						windSpeed.set("55.9016994374947");
 						HorizWindPress.set("8");
 						tempMin.set("25");
 						grade.set("A");
 						instRepl.set("At Installation");
-						poleStength.set("0.25");
+						poleStrength.set("0.25");
 						xarmStrength.set("0.5");
 						guyStrength.set("0.5");
 						anchorStregth.set("0.5");
 					}
-					else if (bgradeRad2)
+					else if (bgradeRad2)//done
 					{
-						
+						description.set("Wood- GO 95 Grade B - Light Loading at Installation (8 lbs.)");
+						name.set("GO 95 Light Grade B at Installation");
+						lightHeavy.set("Light");
+						ice.set("0");
+						windSpeed.set("55.9016994374947");
+						HorizWindPress.set("8");
+						tempMin.set("25");
+						grade.set("B");
+						instRepl.set("At Installation");
+						poleStrength.set("0.33");
+						xarmStrength.set("0.5");
+						guyStrength.set("0.5");
+						anchorStregth.set("0.5");
 					}
 				}
 				else if (replRad2)
 				{
-
+					if (agradeRad2) //done
+					{
+						description.set("Wood- GO 95 Grade A - Light Loading at Replacement (8 lbs.)");
+						name.set("GO 95 Light Grade A at Replacement");
+						lightHeavy.set("Light");
+						ice.set("0");
+						windSpeed.set("55.9016994374947");
+						HorizWindPress.set("8");
+						tempMin.set("25");
+						grade.set("A");
+						instRepl.set("At Replacement");
+						poleStrength.set("0.375");
+						xarmStrength.set("0.75");
+						guyStrength.set("0.75");
+						anchorStregth.set("0.75");
+					}
+					else if (bgradeRad2) //done
+					{
+						description.set("Wood- GO 95 Grade B - Light Loading at Replacement (8 lbs.)");
+						name.set("GO 95 Light Grade B at Replacement");
+						lightHeavy.set("Light");
+						ice.set("0");
+						windSpeed.set("55.9016994374947");
+						HorizWindPress.set("8");
+						tempMin.set("25");
+						grade.set("B");
+						instRepl.set("At Replacement");
+						poleStrength.set("0.5");
+						xarmStrength.set("0.75");
+						guyStrength.set("0.75");
+						anchorStregth.set("0.75");
+					}					
 				}
-
 			}
 			else if (heavyRad2)
 			{
 				if (instRad2)
 				{
-					if (agradeRad2)
-
+					if (agradeRad2)//done
 					{
-
+						description.set("Wood- GO 95 Grade A - Light Loading at Installation (6 lbs.)");
+						name.set("User defined LoadCase");
+						lightHeavy.set("Heavy");
+						ice.set("0.5");
+						windSpeed.set("48.4122918275927");
+						HorizWindPress.set("6");
+						tempMin.set("0");
+						grade.set("N/A");
+						instRepl.set("At Installation");
+						poleStrength.set("0.25");
+						xarmStrength.set("0.5");
+						guyStrength.set("0.5");
+						anchorStregth.set("0.5");
 					}
-					else if (bgradeRad2)
+					else if (bgradeRad2) //done
 					{
-
+						description.set("Wood- GO 95 Grade B - Light Loading at Installation (6 lbs.)");
+						name.set("User defined LoadCase");
+						lightHeavy.set("Heavy");
+						ice.set("0.5");
+						windSpeed.set("48.4122918275927");
+						HorizWindPress.set("6");
+						tempMin.set("0");
+						grade.set("N/A");
+						instRepl.set("At Installation");
+						poleStrength.set("0.3333");
+						xarmStrength.set("0.5");
+						guyStrength.set("0.5");
+						anchorStregth.set("0.5");
 					}
 				}
 				else if (replRad2)
 				{
-
+					if (agradeRad2) //done
+					{
+						description.set("Wood- GO 95 Grade A - Light Loading at Replacement (6 lbs.)");
+						name.set("User defined LoadCase");
+						lightHeavy.set("Heavy");
+						ice.set("0.5");
+						windSpeed.set("48.4122918275927");
+						HorizWindPress.set("6");
+						tempMin.set("0");
+						grade.set("N/A");
+						instRepl.set("At Replacement");
+						poleStrength.set("0.5");
+						xarmStrength.set("0.75");
+						guyStrength.set("0.75");
+						anchorStregth.set("0.75");
+					}
+					else if (bgradeRad2) //done
+					{
+						description.set("Wood- GO 95 Grade B - Light Loading at Replacement (6 lbs.)");
+						name.set("User defined LoadCase");
+						lightHeavy.set("Heavy");
+						ice.set("0.5");
+						windSpeed.set("48.4122918275927");
+						HorizWindPress.set("6");
+						tempMin.set("0");
+						grade.set("N/A");
+						instRepl.set("At Replacement");
+						poleStrength.set("0.5");
+						xarmStrength.set("0.75");
+						guyStrength.set("0.75");
+						anchorStregth.set("0.75");
+					}
 				}
 			}
 		}
-		else if (twelveRad2)
+		else if (twelveRad2) // 12 lb
 		{
-			if (lightRad2)
-			{
-				if (instRad2)
-				{
-					if (agradeRad2)
-
-					{
-
-					}
-					else if (bgradeRad2)
-					{
-
-					}
-				}
-				else if (replRad2)
-				{
-
-				}
-
-			}
-			else if (heavyRad2)
-			{
-				if (instRad2)
-				{
-					if (agradeRad2)
-
-					{
-
-					}
-					else if (bgradeRad2)
-					{
-
-					}
-				}
-				else if (replRad2)
-				{
-
-				}
-			}
-
-		}
-		else if (sixteenRad2)
+		if (lightRad2)
 		{
-			if (lightRad2)
+			if (instRad2)
 			{
-				if (instRad2)
+				if (agradeRad2) //done
 				{
-					if (agradeRad2)
-
-					{
-
-					}
-					else if (bgradeRad2)
-					{
-
-					}
+					description.set("Wood- GO 95 Grade A - Light Loading at Installation (12 lbs.)");
+					name.set("GO 95 Light Grade A at Installation");
+					lightHeavy.set("Light");
+					ice.set("0");
+					windSpeed.set("68.4653196881458");
+					HorizWindPress.set("12");
+					tempMin.set("25");
+					grade.set("A");
+					instRepl.set("At Installation");
+					poleStrength.set("0.25");
+					xarmStrength.set("0.5");
+					guyStrength.set("0.5");
+					anchorStregth.set("0.5");
 				}
-				else if (replRad2)
+				else if (bgradeRad2)//done
 				{
-
+					description.set("Wood- GO 95 Grade B - Light Loading at Installation (12 lbs.)");
+					name.set("GO 95 Light Grade B at Installation");
+					lightHeavy.set("Light");
+					ice.set("0");
+					windSpeed.set("68.4653196881458");
+					HorizWindPress.set("12");
+					tempMin.set("25");
+					grade.set("B");
+					instRepl.set("At Installation");
+					poleStrength.set("0.33");
+					xarmStrength.set("0.5");
+					guyStrength.set("0.5");
+					anchorStregth.set("0.5");
 				}
-
 			}
-			else if (heavyRad2)
+			else if (replRad2)
 			{
-				if (instRad2)
+				if (agradeRad2) //done
 				{
-					if (agradeRad2)
-
-					{
-
-					}
-					else if (bgradeRad2)
-					{
-
-					}
+					description.set("Wood- GO 95 Grade A - Light Loading at Replacement (12 lbs.)");
+					name.set("GO 95 Light Grade A at Replacement");
+					lightHeavy.set("Light");
+					ice.set("0");
+					windSpeed.set("68.4653196881458");
+					HorizWindPress.set("12");
+					tempMin.set("25");
+					grade.set("A");
+					instRepl.set("At Replacement");
+					poleStrength.set("0.375");
+					xarmStrength.set("0.75");
+					guyStrength.set("0.75");
+					anchorStregth.set("0.75");
 				}
-				else if (replRad2)
+				else if (bgradeRad2)  //done
 				{
-
+					description.set("Wood- GO 95 Grade B - Light Loading at Replacement (12 lbs.)");
+					name.set("GO 95 Light Grade B at Replacement");
+					lightHeavy.set("Light");
+					ice.set("0");
+					windSpeed.set("68.4653196881458");
+					HorizWindPress.set("12");
+					tempMin.set("25");
+					grade.set("B");
+					instRepl.set("At Replacement");
+					poleStrength.set("0.5");
+					xarmStrength.set("0.75");
+					guyStrength.set("0.75");
+					anchorStregth.set("0.75");
 				}
 			}
 		}
-		else if (eighteenRad2)
+		else if (heavyRad2)
 		{
-			if (lightRad2)
+			if (instRad2)
 			{
-				if (instRad2)
+				if (agradeRad2) //done
 				{
-					if (agradeRad2)
-
-					{
-
-					}
-					else if (bgradeRad2)
-					{
-
-					}
+					description.set("Wood- GO 95 Grade A - Light Loading at Installation (12 lbs.)");
+					name.set("GO 95 Heavy Grade A at Installation");
+					lightHeavy.set("Heavy");
+					ice.set("0.5");
+					windSpeed.set("68.4653196881458");
+					HorizWindPress.set("12");
+					tempMin.set("0");
+					grade.set("A");
+					instRepl.set("At Installation");
+					poleStrength.set("0.25");
+					xarmStrength.set("0.5");
+					guyStrength.set("0.5");
+					anchorStregth.set("0.5");
 				}
-				else if (replRad2)
+				else if (bgradeRad2) //done
 				{
-
-				}
-
-			}
-			else if (heavyRad2)
-			{
-				if (instRad2)
-				{
-					if (agradeRad2)
-
-					{
-
-					}
-					else if (bgradeRad2)
-					{
-
-					}
-				}
-				else if (replRad2)
-				{
-
+					description.set("Wood- GO 95 Grade B - Light Loading at Installation (12 lbs.)");
+					name.set("GO 95 Heavy Grade B at Installation");
+					lightHeavy.set("Heavy");
+					ice.set("0.5");
+					windSpeed.set("68.4653196881458");
+					HorizWindPress.set("12");
+					tempMin.set("0");
+					grade.set("B");
+					instRepl.set("At Installation");
+					poleStrength.set("0.3333");
+					xarmStrength.set("0.5");
+					guyStrength.set("0.5");
+					anchorStregth.set("0.5");
 				}
 			}
+			else if (replRad2)
+			{
+				if (agradeRad2) //done
+				{
+					description.set("Wood- GO 95 Grade A - Light Loading at Replacement (12 lbs.)");
+					name.set("GO 95 Heavy Grade A At Replacement");
+					lightHeavy.set("Heavy");
+					ice.set("0.5");
+					windSpeed.set("68.4653196881458");
+					HorizWindPress.set("12");
+					tempMin.set("0");
+					grade.set("A");
+					instRepl.set("At Replacement");
+					poleStrength.set("0.375");
+					xarmStrength.set("0.75");
+					guyStrength.set("0.75");
+					anchorStregth.set("0.75");
+				}
+				else if (bgradeRad2) //done
+				{
+					description.set("Wood- GO 95 Grade B - Light Loading at Replacement (12 lbs.)");
+					name.set("GO 95 Heavy Grade B At Replacement");
+					lightHeavy.set("Heavy");
+					ice.set("0.5");
+					windSpeed.set("68.4653196881458");
+					HorizWindPress.set("12");
+					tempMin.set("0");
+					grade.set("B");
+					instRepl.set("At Replacement");
+					poleStrength.set("0.5");
+					xarmStrength.set("0.75");
+					guyStrength.set("0.75");
+					anchorStregth.set("0.75");
+				}
+			}
+		}
+
+		}
+		else if (sixteenRad2) //16 lb
+		{
+		if (lightRad2)
+		{
+			if (instRad2)
+			{
+				if (agradeRad2) //done
+				{
+					description.set("Wood- GO 95 Grade A - Light Loading at Installation (16 lbs.)");
+					name.set("GO 95 Light Grade A at Installation");
+					lightHeavy.set("Light");
+					ice.set("0");
+					windSpeed.set("79.0569415042095");
+					HorizWindPress.set("16");
+					tempMin.set("25");
+					grade.set("A");
+					instRepl.set("At Installation");
+					poleStrength.set("0.25");
+					xarmStrength.set("0.5");
+					guyStrength.set("0.5");
+					anchorStregth.set("0.5");
+				}
+				else if (bgradeRad2) //done
+				{
+					description.set("Wood- GO 95 Grade B - Light Loading at Installation (16 lbs.)");
+					name.set("GO 95 Light Grade B at Installation");
+					lightHeavy.set("Light");
+					ice.set("0");
+					windSpeed.set("79.0569415042095");
+					HorizWindPress.set("16");
+					tempMin.set("25");
+					grade.set("B");
+					instRepl.set("At Installation");
+					poleStrength.set("0.33");
+					xarmStrength.set("0.5");
+					guyStrength.set("0.5");
+					anchorStregth.set("0.5");
+				}
+			}
+			else if (replRad2)
+			{
+				if (agradeRad2) // done
+				{
+					description.set("Wood- GO 95 Grade A - Light Loading at Replacement (16 lbs.)");
+					name.set("GO 95 Light Grade A at Replacement");
+					lightHeavy.set("Light");
+					ice.set("0");
+					windSpeed.set("79.0569415042095");
+					HorizWindPress.set("16");
+					tempMin.set("25");
+					grade.set("A");
+					instRepl.set("At Replacement");
+					poleStrength.set("0.375");
+					xarmStrength.set("0.75");
+					guyStrength.set("0.75");
+					anchorStregth.set("0.75");
+				}
+				else if (bgradeRad2)  //done
+				{
+					description.set("Wood- GO 95 Grade B - Light Loading at Replacement (16 lbs.)");
+					name.set("GO 95 Light Grade B at Replacement");
+					lightHeavy.set("Light");
+					ice.set("0");
+					windSpeed.set("79.0569415042095");
+					HorizWindPress.set("16");
+					tempMin.set("25");
+					grade.set("B");
+					instRepl.set("At Replacement");
+					poleStrength.set("0.5");
+					xarmStrength.set("0.75");
+					guyStrength.set("0.75");
+					anchorStregth.set("0.75");
+				}
+			}
+		}
+		else if (heavyRad2)
+		{
+			if (instRad2)
+			{
+				if (agradeRad2) //done
+				{
+					description.set("Wood- GO 95 Grade A - Light Loading at Installation (16 lbs.)");
+					name.set("GO 95 Heavy Grade A at Installation");
+					lightHeavy.set("Heavy");
+					ice.set("0.5");
+					windSpeed.set("79.0569415042095");
+					HorizWindPress.set("16");
+					tempMin.set("0");
+					grade.set("A");
+					instRepl.set("At Installation");
+					poleStrength.set("0.25");
+					xarmStrength.set("0.5");
+					guyStrength.set("0.5");
+					anchorStregth.set("0.5");
+				}
+				else if (bgradeRad2) //done
+				{
+					description.set("Wood- GO 95 Grade B - Light Loading at Installation (16 lbs.)");
+					name.set("GO 95 Heavy Grade B at Installation");
+					lightHeavy.set("Heavy");
+					ice.set("0.5");
+					windSpeed.set("79.0569415042095");
+					HorizWindPress.set("16");
+					tempMin.set("0");
+					grade.set("B");
+					instRepl.set("At Installation");
+					poleStrength.set("0.3333");
+					xarmStrength.set("0.5");
+					guyStrength.set("0.5");
+					anchorStregth.set("0.5");
+				}
+			}
+			else if (replRad2)
+			{
+				if (agradeRad2) //done
+				{
+					description.set("Wood- GO 95 Grade A - Light Loading at Replacement (16 lbs.)");
+					name.set("GO 95 Heavy Grade A At Replacement");
+					lightHeavy.set("Heavy");
+					ice.set("0.5");
+					windSpeed.set("79.0569415042095");
+					HorizWindPress.set("16");
+					tempMin.set("0");
+					grade.set("A");
+					instRepl.set("At Replacement");
+					poleStrength.set("0.375");
+					xarmStrength.set("0.75");
+					guyStrength.set("0.75");
+					anchorStregth.set("0.75");
+				}
+				else if (bgradeRad2) 
+				{
+					description.set("Wood- GO 95 Grade B - Light Loading at Replacement (16 lbs.)");
+					name.set("GO 95 Heavy Grade B At Replacement");
+					lightHeavy.set("Heavy");
+					ice.set("0.5");
+					windSpeed.set("79.0569415042095");
+					HorizWindPress.set("16");
+					tempMin.set("0");
+					grade.set("B");
+					instRepl.set("At Replacement");
+					poleStrength.set("0.5");
+					xarmStrength.set("0.75");
+					guyStrength.set("0.75");
+					anchorStregth.set("0.75");
+				}
+			}
+		}
+		}
+		else if (eighteenRad2) //18 lb
+		{
+		if (lightRad2)
+		{
+			if (instRad2)
+			{
+				if (agradeRad2) //done
+				{
+					description.set("Wood- GO 95 Grade A - Light Loading at Installation (18 lbs.)");
+					name.set("GO 95 Light Grade A at Installation");
+					lightHeavy.set("Light");
+					ice.set("0");
+					windSpeed.set("83.8525491562421");
+					HorizWindPress.set("18");
+					tempMin.set("25");
+					grade.set("A");
+					instRepl.set("At Installation");
+					poleStrength.set("0.25");
+					xarmStrength.set("0.5");
+					guyStrength.set("0.5");
+					anchorStregth.set("0.5");
+				}
+				else if (bgradeRad2) //done
+				{
+					description.set("Wood- GO 95 Grade B - Light Loading at Installation (18 lbs.)");
+					name.set("GO 95 Light Grade B at Installation");
+					lightHeavy.set("Light");
+					ice.set("0");
+					windSpeed.set("83.8525491562421");
+					HorizWindPress.set("18");
+					tempMin.set("25");
+					grade.set("B");
+					instRepl.set("At Installation");
+					poleStrength.set("0.33");
+					xarmStrength.set("0.5");
+					guyStrength.set("0.5");
+					anchorStregth.set("0.5");
+				}
+			}
+			else if (replRad2)
+			{
+				if (agradeRad2) //done
+				{
+					description.set("Wood- GO 95 Grade A - Light Loading at Replacement (18 lbs.)");
+					name.set("GO 95 Light Grade A at Replacement");
+					lightHeavy.set("Light");
+					ice.set("0");
+					windSpeed.set("83.8525491562421");
+					HorizWindPress.set("18");
+					tempMin.set("25");
+					grade.set("A");
+					instRepl.set("At Replacement");
+					poleStrength.set("0.375");
+					xarmStrength.set("0.75");
+					guyStrength.set("0.75");
+					anchorStregth.set("0.75");
+				}
+				else if (bgradeRad2) //done
+				{
+					description.set("Wood- GO 95 Grade B - Light Loading at Replacement (18 lbs.)");
+					name.set("GO 95 Light Grade B at Replacement");
+					lightHeavy.set("Light");
+					ice.set("0");
+					windSpeed.set("83.8525491562421");
+					HorizWindPress.set("18");
+					tempMin.set("25");
+					grade.set("B");
+					instRepl.set("At Replacement");
+					poleStrength.set("0.5");
+					xarmStrength.set("0.75");
+					guyStrength.set("0.75");
+					anchorStregth.set("0.75");
+				}
+			}
+		}
+		else if (heavyRad2)
+		{
+			if (instRad2)
+			{
+				if (agradeRad2) 
+				{
+					description.set("Wood- GO 95 Grade A - Light Loading at Installation (18 lbs.)");
+					name.set("GO 95 Heavy Grade A at Installation");
+					lightHeavy.set("Heavy");
+					ice.set("0.5");
+					windSpeed.set("83.8525491562421");
+					HorizWindPress.set("18");
+					tempMin.set("0");
+					grade.set("A");
+					instRepl.set("At Installation");
+					poleStrength.set("0.25");
+					xarmStrength.set("0.5");
+					guyStrength.set("0.5");
+					anchorStregth.set("0.5");
+				}
+				else if (bgradeRad2) //done
+				{
+					description.set("Wood- GO 95 Grade B - Light Loading at Installation (18 lbs.)");
+					name.set("GO 95 Heavy Grade B at Installation");
+					lightHeavy.set("Heavy");
+					ice.set("0.5");
+					windSpeed.set("83.8525491562421");
+					HorizWindPress.set("18");
+					tempMin.set("0");
+					grade.set("B");
+					instRepl.set("At Installation");
+					poleStrength.set("0.3333");
+					xarmStrength.set("0.5");
+					guyStrength.set("0.5");
+					anchorStregth.set("0.5");
+				}
+			}
+			else if (replRad2) // done
+			{
+				if (agradeRad2) 
+				{
+					description.set("Wood- GO 95 Grade A - Light Loading at Replacement (18 lbs.)");
+					name.set("GO 95 Heavy Grade A At Replacement");
+					lightHeavy.set("Heavy");
+					ice.set("0.5");
+					windSpeed.set("83.8525491562421");
+					HorizWindPress.set("18");
+					tempMin.set("0");
+					grade.set("A");
+					instRepl.set("At Replacement");
+					poleStrength.set("0.375");
+					xarmStrength.set("0.75");
+					guyStrength.set("0.75");
+					anchorStregth.set("0.75");
+				}
+				else if (bgradeRad2) // done
+				{
+					description.set("Wood- GO 95 Grade B - Light Loading at Replacement (18 lbs.)");
+					name.set("GO 95 Heavy Grade B At Replacement");
+					lightHeavy.set("Heavy");
+					ice.set("0.5");
+					windSpeed.set("83.8525491562421");
+					HorizWindPress.set("18");
+					tempMin.set("0");
+					grade.set("B");
+					instRepl.set("At Replacement");
+					poleStrength.set("0.5");
+					xarmStrength.set("0.75");
+					guyStrength.set("0.75");
+					anchorStregth.set("0.75");
+				}
+			}
+		}
 		}
 		else if (twntyfrRad2)
 		{
-			if (lightRad2)
+		if (lightRad2)
+		{
+			if (instRad2)
 			{
-				if (instRad2)
+				if (agradeRad2) 
 				{
-					if (agradeRad2)
-
-					{
-
-					}
-					else if (bgradeRad2)
-					{
-
-					}
+					description.set("Wood- GO 95 Grade A - Light Loading at Installation (18 lbs.)");
+					name.set("GO 95 Light Grade A at Installation");
+					lightHeavy.set("Light");
+					ice.set("0");
+					windSpeed.set("83.8525491562421");
+					HorizWindPress.set("18");
+					tempMin.set("25");
+					grade.set("A");
+					instRepl.set("At Installation");
+					poleStrength.set("0.25");
+					xarmStrength.set("0.5");
+					guyStrength.set("0.5");
+					anchorStregth.set("0.5");
 				}
-				else if (replRad2)
+				else if (bgradeRad2) 
 				{
-
+					description.set("Wood- GO 95 Grade B - Light Loading at Installation (18 lbs.)");
+					name.set("GO 95 Light Grade B at Installation");
+					lightHeavy.set("Light");
+					ice.set("0");
+					windSpeed.set("83.8525491562421");
+					HorizWindPress.set("18");
+					tempMin.set("25");
+					grade.set("B");
+					instRepl.set("At Installation");
+					poleStrength.set("0.33");
+					xarmStrength.set("0.5");
+					guyStrength.set("0.5");
+					anchorStregth.set("0.5");
 				}
-
 			}
-			else if (heavyRad2)
+			else if (replRad2)
 			{
-				if (instRad2)
+				if (agradeRad2) 
 				{
-					if (agradeRad2)
-
-					{
-
-					}
-					else if (bgradeRad2)
-					{
-
-					}
+					description.set("Wood- GO 95 Grade A - Light Loading at Replacement (18 lbs.)");
+					name.set("GO 95 Light Grade A at Replacement");
+					lightHeavy.set("Light");
+					ice.set("0");
+					windSpeed.set("83.8525491562421");
+					HorizWindPress.set("18");
+					tempMin.set("25");
+					grade.set("A");
+					instRepl.set("At Replacement");
+					poleStrength.set("0.375");
+					xarmStrength.set("0.75");
+					guyStrength.set("0.75");
+					anchorStregth.set("0.75");
 				}
-				else if (replRad2)
+				else if (bgradeRad2) 
 				{
-
+					description.set("Wood- GO 95 Grade B - Light Loading at Replacement (18 lbs.)");
+					name.set("GO 95 Light Grade B at Replacement");
+					lightHeavy.set("Light");
+					ice.set("0");
+					windSpeed.set("83.8525491562421");
+					HorizWindPress.set("18");
+					tempMin.set("25");
+					grade.set("B");
+					instRepl.set("At Replacement");
+					poleStrength.set("0.5");
+					xarmStrength.set("0.75");
+					guyStrength.set("0.75");
+					anchorStregth.set("0.75");
 				}
 			}
 		}
+		else if (heavyRad2)
+		{
+			if (instRad2)
+			{
+				if (agradeRad2)
+				{
+					description.set("Wood- GO 95 Grade A - Light Loading at Installation (18 lbs.)");
+					name.set("GO 95 Heavy Grade A at Installation");
+					lightHeavy.set("Heavy");
+					ice.set("0.5");
+					windSpeed.set("83.8525491562421");
+					HorizWindPress.set("18");
+					tempMin.set("0");
+					grade.set("A");
+					instRepl.set("At Installation");
+					poleStrength.set("0.25");
+					xarmStrength.set("0.5");
+					guyStrength.set("0.5");
+					anchorStregth.set("0.5");
+				}
+				else if (bgradeRad2) 
+				{
+					description.set("Wood- GO 95 Grade B - Light Loading at Installation (18 lbs.)");
+					name.set("GO 95 Heavy Grade B at Installation");
+					lightHeavy.set("Heavy");
+					ice.set("0.5");
+					windSpeed.set("83.8525491562421");
+					HorizWindPress.set("18");
+					tempMin.set("0");
+					grade.set("B");
+					instRepl.set("At Installation");
+					poleStrength.set("0.3333");
+					xarmStrength.set("0.5");
+					guyStrength.set("0.5");
+					anchorStregth.set("0.5");
+				}
+			}
+			else if (replRad2) 
+			{
+				if (agradeRad2)
+				{
+					description.set("Wood- GO 95 Grade A - Light Loading at Replacement (18 lbs.)");
+					name.set("GO 95 Heavy Grade A At Replacement");
+					lightHeavy.set("Heavy");
+					ice.set("0.5");
+					windSpeed.set("83.8525491562421");
+					HorizWindPress.set("18");
+					tempMin.set("0");
+					grade.set("A");
+					instRepl.set("At Replacement");
+					poleStrength.set("0.375");
+					xarmStrength.set("0.75");
+					guyStrength.set("0.75");
+					anchorStregth.set("0.75");
+				}
+				else if (bgradeRad2) 
+				{
+					description.set("Wood- GO 95 Grade B - Light Loading at Replacement (18 lbs.)");
+					name.set("GO 95 Heavy Grade B At Replacement");
+					lightHeavy.set("Heavy");
+					ice.set("0.5");
+					windSpeed.set("83.8525491562421");
+					HorizWindPress.set("18");
+					tempMin.set("0");
+					grade.set("B");
+					instRepl.set("At Replacement");
+					poleStrength.set("0.5");
+					xarmStrength.set("0.75");
+					guyStrength.set("0.75");
+					anchorStregth.set("0.75");
+				}
+			}
+		}
+		}
 	}
-		doc.save_file("C:\\Users\\vmend\\Desktop\\test.pplx");
-	
-			
-	
-
-	//C:\Users\vmend\Desktop
-	/*
-	for (auto& node : tools)
-	{
-		std::cout << node.node().child_value() << '\n';
-
-		std::cout << node.node().child_value() << '\n';
-	}
-	*/
-
-	
-	std::cout << "Complete \n";
+		doc.save_file(type);	
+	std::cout << "Complete \n\n";
 
 }
+
+void read_directory(const std::string& name, stringvec& v)
+{
+	DIR* dirp = opendir(name.c_str());
+	struct dirent* dp;
+	while ((dp = readdir(dirp)) != NULL) {
+		v.push_back(dp->d_name);
+	}
+	closedir(dirp);
+}
+
 
 };
 
