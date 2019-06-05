@@ -15,6 +15,6 @@ int main(array<String^>^ args) {
 	Application::SetCompatibleTextRenderingDefault(false);
 	OUCH::MyForm form;
 	Application::Run(% form);
-	//pugi::xml_document doc;
+	
 	
 }
